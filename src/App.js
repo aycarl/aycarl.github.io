@@ -10,6 +10,7 @@ function App() {
         <p>
           Personal loading...
         </p>
+        <p>Deploy to Heroku</p>
       </header>
     </div>
   );
