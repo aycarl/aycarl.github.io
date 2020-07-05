@@ -1,0 +1,13 @@
+
+.socialMediaLinks {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    display: flex;
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+  
+  .socialMediaIcon {
+    padding-left: 1em;
+  }
