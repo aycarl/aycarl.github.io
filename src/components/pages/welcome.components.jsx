@@ -1,12 +1,13 @@
-import React from 'react';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 const WelcomeStatement = (props) => {
     return (
         <div>
             <p>{props.welcome}</p>
-            <p><a href="./aboutMe">read more ...</a></p>
+            <p><Link to="/about">read more ...</Link></p>
         </div>
     );
 }
 
-export default WelcomeStatement;
+export default WelcomeStatement

@@ -1,17 +1,15 @@
-import React from 'react';
+import React from "react";
 
-import MenuItems from './menu-items.components'
+import MenuItems from "./menu-items.components";
 
-import './footer.styles.css'
+import "./footer.styles.css";
 
 const Footer = () => {
-    return (
-        <div className='footer'>
-            <hr />
-            <MenuItems />
-            <div className='footerEmail'><strong>Say Hi:</strong> aycarl@hotmail.com</div>
-        </div>
-    );
-}
+  return (
+    <div className="footer">
+      <MenuItems />
+    </div>
+  );
+};
 
 export default Footer;
