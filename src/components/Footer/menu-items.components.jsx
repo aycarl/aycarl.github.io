@@ -7,7 +7,7 @@ const MenuItems = () => {
       <Link to="/projects">
         <div className="menuItem">Projects</div>
       </Link>
-      <Link>
+      <Link to="/">
         <div className="menuItem">Resume</div>
       </Link>
       <Link to="/about">
