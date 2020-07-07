@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 const MenuItems = () => {
   return (
     <div className="menu">
-      <Link to="/about">
+      <Link to="/projects">
         <div className="menuItem">Projects</div>
       </Link>
       <Link>
         <div className="menuItem">Resume</div>
+      </Link>
+      <Link to="/about">
+        <div className="menuItem">About me</div>
       </Link>
       <div className="menuItem footerEmail">
         Say Hi: aycarl@hotmail.com

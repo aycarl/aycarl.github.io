@@ -4,7 +4,7 @@ import ProjectCard from "./project-card.components";
 
 import "./projects.styles.css";
 
-const Projects = (props) => {
+const Projects = () => {
   return (
     <div>
       <h3>Works & Projects</h3>
@@ -17,6 +17,21 @@ const Projects = (props) => {
         <ProjectCard
           projectName="Nana Darkoa"
           description="A personal brand"
+          link="https://aycarl.github.io/monsters-rolodex/"
+        />
+        <ProjectCard
+          projectName="Beautique"
+          description="An ecommerce website"
+          link="https://aycarl.github.io/monsters-rolodex/"
+        />
+        <ProjectCard
+          projectName="Beautique"
+          description="An ecommerce website, created from a react tutorial"
+          link="https://aycarl.github.io/monsters-rolodex/"
+        />
+        <ProjectCard
+          projectName="Beautique"
+          description="An ecommerce website"
           link="https://aycarl.github.io/monsters-rolodex/"
         />
         <ProjectCard

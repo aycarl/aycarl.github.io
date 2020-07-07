@@ -2,3 +2,13 @@
   padding: 0.5rem 15rem;
   min-height: 85vh;
 }
+
+.section {
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: medium;
+  color: blueviolet;
+}

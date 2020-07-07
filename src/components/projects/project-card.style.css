@@ -1,24 +1,19 @@
 
 .projectCard {
-  max-width: calc(67vw / 5 );
-  min-height: 250px;
-  border: 1px solid;
-  border-radius: 5px;
-  margin-bottom: 1em;
-  margin-right: 1vw;
-  padding: 1em;
+  max-width: calc(67vw / 4 );
   display: inline-block;
   position: relative;
+  border-radius: 5px;
 }
 
-.projectImage {
+.imgContainer {
   height: auto;
   width: 100%;
 }
 
-.projectDescription {
+/* .projectDescription {
   position: absolute;
-}
+} */
 
 .background-image {
   width: 100%;
