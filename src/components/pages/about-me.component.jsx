@@ -8,8 +8,8 @@ const AboutMe = () => {
 
   return (
     <div className="page">
-        <h1>About me</h1>
-        <p>{about}</p>
+      <h1>About me</h1>
+      <p>{about}</p>
     </div>
   );
 };

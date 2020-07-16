@@ -7,15 +7,17 @@ const MenuItems = () => {
       <Link to="/projects">
         <div className="menuItem">Projects</div>
       </Link>
-      <Link to="/">
+      <a
+        href="https://drive.google.com/file/d/1UGPCZe3rQGR3mQF2RCt90SX5i1gMrVkA/view?usp=sharing"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <div className="menuItem">Resume</div>
-      </Link>
+      </a>
       <Link to="/about">
         <div className="menuItem">About me</div>
       </Link>
-      <div className="menuItem footerEmail">
-        Say Hi: aycarl@hotmail.com
-      </div>
+      <div className="menuItem footerEmail">Say Hi: aycarl@hotmail.com</div>
     </div>
   );
 };

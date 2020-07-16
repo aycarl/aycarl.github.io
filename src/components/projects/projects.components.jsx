@@ -7,36 +7,21 @@ import "./projects.styles.css";
 const Projects = () => {
   return (
     <div>
-      <h3>Works & Projects</h3>
+      <h3>Featured Projects (Web Development)</h3>
       <div className="projectContainer">
         <ProjectCard
-          projectName="Monsters Rolodex"
-          description="A simple rolodex for monsters"
-          link="https://aycarl.github.io/monsters-rolodex/"
-        />
-        <ProjectCard
-          projectName="Nana Darkoa"
-          description="A personal brand"
-          link="https://aycarl.github.io/monsters-rolodex/"
-        />
-        <ProjectCard
           projectName="Beautique"
           description="An ecommerce website"
-          link="https://aycarl.github.io/monsters-rolodex/"
+          link="http://beautique.herokuapp.com/"
         />
         <ProjectCard
-          projectName="Beautique"
-          description="An ecommerce website, created from a react tutorial"
-          link="https://aycarl.github.io/monsters-rolodex/"
+          projectName="School Admin"
+          description="A databse management app for k12 schools"
+          link="https://paperhuts.com/school-admin/"
         />
         <ProjectCard
-          projectName="Beautique"
-          description="An ecommerce website"
-          link="https://aycarl.github.io/monsters-rolodex/"
-        />
-        <ProjectCard
-          projectName="Beautique"
-          description="An ecommerce website"
+          projectName="Notices"
+          description="A simple notice board app"
           link="https://aycarl.github.io/monsters-rolodex/"
         />
       </div>
