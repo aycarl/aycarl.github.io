@@ -5,15 +5,14 @@
   border-radius: 5px;
 }
 
-.imgContainer {
-  height: auto;
+.background-image {
+  filter: grayscale(80%);
+  height: 150px;
   width: 100%;
+  background-position: center;
+  background-size: cover;
 }
 
-/* .projectDescription {
-  position: absolute;
-} */
-
-.background-image {
-  width: 100%;
+.projectDescription {
+  margin-block-start: 1em;
 }

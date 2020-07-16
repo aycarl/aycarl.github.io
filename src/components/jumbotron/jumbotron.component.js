@@ -13,10 +13,8 @@ const ImageContainer = () => (
 const JumboContent = () => {
   return (
     <div className="jumboProfileInfo">
-      <div>
         <h1>Carl Yao Agbenyega</h1>
         <h2>Web Developer, UI & Graphic Designer</h2>
-      </div>
     </div>
   );
 };
@@ -24,7 +22,7 @@ const JumboContent = () => {
 const Jumbotron = () => {
   return (
     <div className="jumbotron">
-      <ImageContainer />
+      {/* <ImageContainer /> */}
       <JumboContent />
     </div>
   );

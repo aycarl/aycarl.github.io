@@ -8,9 +8,7 @@ const ProjectCard = (props) => {
   return (
     <div className="projectCard">
       <a href={props.link}>
-        <div className="imgContainer">
-          <img alt="project" src={Logo} className="background-image" />
-        </div>
+        <div style={{backgroundImage:`url(${Logo})`}} className="background-image" />
         <div className="projectDescription">
           <strong>{props.projectName}</strong>
           <p>{props.description}</p>

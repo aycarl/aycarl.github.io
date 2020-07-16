@@ -1,5 +1,5 @@
 .page {
-  padding: 0.5rem 20rem;
+  padding: 0.5vh 15vw;
   min-height: 85vh;
 }
 
@@ -10,4 +10,12 @@
 
 h1 {
   color: #707070;
+}
+
+ul {
+  padding-inline-start: 20px;
+}
+
+p {
+  margin-block-start: .2em;
 }

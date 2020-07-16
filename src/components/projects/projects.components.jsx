@@ -16,12 +16,12 @@ const Projects = () => {
         />
         <ProjectCard
           projectName="School Admin"
-          description="A databse management app for k12 schools"
+          description="A database management app for k12 schools"
           link="https://paperhuts.com/school-admin/"
         />
         <ProjectCard
           projectName="Notices"
-          description="A simple notice board app"
+          description="A notice board app"
           link="https://aycarl.github.io/monsters-rolodex/"
         />
       </div>
