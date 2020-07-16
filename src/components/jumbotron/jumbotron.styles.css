@@ -1,0 +1,21 @@
+.jumbotron {
+  display: flex;
+  margin: 5vh 0 5vh 0;
+}
+
+.profileImageContainer {
+  width: 15vw;
+  height: auto;
+}
+
+.profileImage {
+  width: 100%;
+}
+
+.jumboProfileInfo {
+  padding: 20px;
+}
+
+.infoContainer {
+
+}
