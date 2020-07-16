@@ -1,14 +1,14 @@
 import React from "react";
 
-import ProfilePicture from "./../../assets/img/aycarl_color_bg-11.png";
+// import ProfilePicture from "./../../assets/img/aycarl_color_bg-11.png";
 
 import "./jumbotron.styles.css";
 
-const ImageContainer = () => (
-  <div className="profileImageContainer">
-    <img src={ProfilePicture} className="profileImage" />
-  </div>
-);
+// const ImageContainer = () => (
+//   <div className="profileImageContainer">
+//     <img src={ProfilePicture} className="profileImage" />
+//   </div>
+// );
 
 const JumboContent = () => {
   return (
