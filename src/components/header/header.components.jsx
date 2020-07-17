@@ -12,9 +12,11 @@ const Header = (props) => {
   return (
     <div className="header">
       <div className="header-container">
-        <Link to="/">
-          <img alt="logo" src={Logo} className="logo" />
-        </Link>
+        <div className="logoContainer">
+          <Link to="/">
+            <img alt="logo" src={Logo} className="logo" />
+          </Link>
+        </div>
         <SocialMediaLinks />
       </div>
     </div>

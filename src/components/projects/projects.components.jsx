@@ -24,7 +24,11 @@ const Projects = () => {
           description="A notice board app"
           link="https://aycarl.github.io/notices/"
         />
-        <ProjectCard />
+        <ProjectCard
+          redirectCard
+          projectName="User Interface & Graphic Design Projects"
+          link="https://behance.net/aycarl"
+        />
       </div>
     </div>
   );

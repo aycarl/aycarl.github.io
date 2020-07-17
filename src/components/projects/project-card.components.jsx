@@ -10,7 +10,7 @@ const ProjectCard = (props) => {
       <a href={props.link} target="_blank">
         <div
           style={{ backgroundImage: `url(${Logo})` }}
-          className="background-image"
+          className={props.redirectCard ? "background-image redirectCard" : "background-image"}
         >
           <div className="projectDescription">
             <strong>{props.projectName}</strong>
