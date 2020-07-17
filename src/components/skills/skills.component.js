@@ -24,7 +24,7 @@ const MySkills = {
 
 const Skills = () => {
   return (
-    <div>
+    <div className="section">
       <h3>Skills Overview</h3>
       <div className="skillsContainer">
         <SkillSection

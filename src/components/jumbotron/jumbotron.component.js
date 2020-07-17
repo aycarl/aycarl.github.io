@@ -1,14 +1,14 @@
 import React from "react";
 
-// import ProfilePicture from "./../../assets/img/aycarl_color_bg-11.png";
+import ProfilePicture from "./../../assets/img/aycarl_color_bg-11.png";
 
 import "./jumbotron.styles.css";
 
-// const ImageContainer = () => (
-//   <div className="profileImageContainer">
-//     <img src={ProfilePicture} className="profileImage" />
-//   </div>
-// );
+const ImageContainer = () => (
+  <div className="profileImageContainer">
+    <img src="https://avatars1.githubusercontent.com/u/4999487?s=460&v=4" className="profileImage" />
+  </div>
+);
 
 const JumboContent = () => {
   return (
@@ -21,8 +21,8 @@ const JumboContent = () => {
 
 const Jumbotron = () => {
   return (
-    <div className="jumbotron">
-      {/* <ImageContainer /> */}
+    <div className="jumbotron section">
+      <ImageContainer />
       <JumboContent />
     </div>
   );

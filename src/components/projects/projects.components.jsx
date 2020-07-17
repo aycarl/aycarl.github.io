@@ -6,8 +6,8 @@ import "./projects.styles.css";
 
 const Projects = () => {
   return (
-    <div>
-      <h3>Featured Projects (Web Development)</h3>
+    <div className="section">
+      <h3>Featured Projects</h3>
       <div className="projectContainer">
         <ProjectCard
           projectName="Beautique"
@@ -16,14 +16,15 @@ const Projects = () => {
         />
         <ProjectCard
           projectName="School Admin"
-          description="A database management app for k12 schools"
+          description="An admin app for k12 schools"
           link="https://paperhuts.com/school-admin/"
         />
         <ProjectCard
           projectName="Notices"
           description="A notice board app"
-          link="https://aycarl.github.io/monsters-rolodex/"
+          link="https://aycarl.github.io/notices/"
         />
+        <ProjectCard />
       </div>
     </div>
   );
