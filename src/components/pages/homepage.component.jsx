@@ -12,8 +12,8 @@ class Homepage extends Component {
     return (
       <div className="page">
         <Jumbotron />
-        <Projects />
         <Skills />
+        <Projects />
       </div>
     );
   }
