@@ -4,15 +4,35 @@
 }
 
 .profileImageContainer {
-  width: 200px;
-  height: 200px;
-  box-shadow: 0px 10px #DCF2FF;
+  width: 15vw;
+  height: 15vw;
+  box-shadow: 0px 10px #dcf2ff;
 }
 
 .profileImage {
-  width: 100%;
+  max-width: 100%;
 }
 
 .jumboProfileInfo {
   padding: 20px;
+}
+
+/* smaller screens */
+@media (max-width: 800px) {
+  .jumbotron {
+    flex-direction: column;
+  }
+
+  .profileImageContainer {
+    width: 30vw;
+    height: 30vw;
+  }
+}
+
+/* tinny screens */
+@media (max-width: 400px) {
+  .profileImageContainer {
+    width: 80vw;
+    height: 80vw;
+  }
 }

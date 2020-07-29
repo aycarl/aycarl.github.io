@@ -7,7 +7,7 @@ import "./project-card.style.css";
 const ProjectCard = (props) => {
   return (
     <div className="projectCard">
-      <a href={props.link} target="_blank">
+      <a href={props.link} target="_blank" rel="noopener noreferrer">
         <div
           style={{ backgroundImage: `url(${Logo})` }}
           className={props.redirectCard ? "background-image redirectCard" : "background-image"}
