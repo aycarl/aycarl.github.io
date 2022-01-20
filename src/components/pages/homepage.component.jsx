@@ -12,7 +12,7 @@ class Homepage extends Component {
     return (
       <div className="page">
         <Jumbotron />
-        <Skills />
+        {/* <Skills /> */}
         <Projects />
       </div>
     );

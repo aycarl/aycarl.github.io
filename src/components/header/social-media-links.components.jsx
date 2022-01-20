@@ -1,47 +1,39 @@
 import React from "react";
+import styled from "styled-components";
 
-import "./social-media-links.styles.css";
+const SocialMediaLinksContainer = styled.div`
+  display: flex;
+  gap: 1em;
+`;
 
-const SocialMediaLinks = (props) => {
+const SocialMediaIcon = styled.a`
+`;
+
+const SocialMediaLinks = () => {
   return (
-    <div className="socialMediaLinks">
-      <div className="socialMediaIcon">
-        <a
-          href="https://twitter.com/_aycarl"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Twitter
-        </a>
-      </div>
-      <div className="socialMediaIcon">
-        <a
-          href="https://linkedin.com/in/aycarl"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          LinkedIn
-        </a>
-      </div>
-      <div className="socialMediaIcon">
-        <a
-          href="https://medium.com/@aycarl"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Medium
-        </a>
-      </div>
-      <div className="socialMediaIcon">
-        <a
-          href="https://behance.net/aycarl"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Behance
-        </a>
-      </div>
-    </div>
+    <SocialMediaLinksContainer>
+      <SocialMediaIcon
+        href="https://linkedin.com/in/aycarl"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn
+      </SocialMediaIcon>
+      <SocialMediaIcon
+        href="https://github.com/@aycarl"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub
+      </SocialMediaIcon>
+      <SocialMediaIcon
+        href="https://behance.net/aycarl"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Behance
+      </SocialMediaIcon>
+    </SocialMediaLinksContainer>
   );
 };
 

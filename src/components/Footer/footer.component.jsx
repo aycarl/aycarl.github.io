@@ -1,14 +1,25 @@
 import React from "react";
+import styled from "styled-components";
 
-import MenuItems from "./menu-items.components";
+const FooterContainer = styled.div`
+  position: relative;
+  max-height: 8vh;
+  margin-bottom: 2vh;
+  bottom: 0%;
+  padding:  0.5vh 15vw;
+  border-top: 1px black ridge;
+`;
 
-import "./footer.styles.css";
+const EmailContainer = styled.div`
+  margin-right: 0px;
+  right: 0px;
+`;
 
 const Footer = () => {
   return (
-    <div className="footer">
-      <MenuItems />
-    </div>
+    <FooterContainer>
+      <EmailContainer>Say Hi: aycarl@hotmail.com</EmailContainer>
+    </FooterContainer>
   );
 };
 
