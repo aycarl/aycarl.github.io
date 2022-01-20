@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 
 import Projects from "./../projects/projects.components";
 import Skills from "./../skills/skills.component";
@@ -6,14 +7,21 @@ import Jumbotron from "../jumbotron/jumbotron.component";
 
 import "./page.styles.css";
 
-class Homepage extends Component {
+const Page = styled.div`
+  padding: 0.5vh 15vw;
+  min-height: 85vh;
+`;
 
+class Homepage extends Component {
   render() {
     return (
-      <div className="page">
-        <Jumbotron />
-        {/* <Skills /> */}
-        <Projects />
+      <div>
+        <Page>
+          <Jumbotron />
+        </Page>
+        <Page>
+          <Projects />
+        </Page>
       </div>
     );
   }

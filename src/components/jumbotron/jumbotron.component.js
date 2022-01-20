@@ -5,7 +5,6 @@ import ProfilePicture from "./../../assets/img/aycarl_color_bg-11.png";
 
 const HeroContainer = styled.div`
   display: grid;
-  justify-content: center;
   justify-items: center;
   margin-block: 100px;
 `;
@@ -14,6 +13,7 @@ const ImageContainer = styled.div`
   width: 200px;
   height: 200px;
   box-shadow: 10px 10px #5dc4ff;
+  margin-block: 20px;
 `;
 
 const Image = styled.img`
@@ -23,12 +23,15 @@ const Image = styled.img`
 const Jumbotron = () => {
   return (
     <HeroContainer>
-      <ImageContainer>
+      {/* <ImageContainer>
         <Image src="https://avatars1.githubusercontent.com/u/4999487?s=460&v=4" />
+      </ImageContainer> */}
+      <ImageContainer>
+        <Image src={ProfilePicture} />
       </ImageContainer>
-      <h1>Hi! I'm Carl,</h1>
-      <p>a software engineer with a passion for design</p>
-      <p>I enjoy the process of bringing ideas to life!</p>
+      <p>Hi! My name is,</p>
+      <h1>Carl Yao Agbenyega</h1>
+      <h1>I bring ideas to life with code.</h1>
     </HeroContainer>
   );
 };
