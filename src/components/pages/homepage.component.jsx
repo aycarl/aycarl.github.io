@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 import Projects from "./../projects/projects.components";
-import Jumbotron from "../jumbotron/jumbotron.component";
+import About from "../homepage/about";
+import Landing from "../homepage/landing";
 
 export const Page = styled.div`
   padding-block: 15vh;
@@ -15,9 +16,12 @@ class Homepage extends Component {
     return (
       <div>
         <Page>
-          <Jumbotron />
+          <Landing />
         </Page>
-        <Page>
+        <Page id="home-about">
+          <About />
+        </Page>
+        <Page id="home-projects">
           <Projects />
         </Page>
       </div>

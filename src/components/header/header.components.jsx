@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import SocialMediaLinks from "./social-media-links.components";
@@ -41,7 +40,7 @@ const Logo = styled.img`
 
 const MenuSection = styled.div`
   display: flex;
-  gap: 1em;
+  gap: 2em;
   justify-content: space-between;
 `;
 
@@ -50,9 +49,9 @@ const Header = () => {
     <HeaderWrapper>
       <HeaderContainer>
         <LogoContainer>
-          <Link to="/">
+          <a href="/">
             <Logo alt="logo" src={LogoImage} className="logo" />
-          </Link>
+          </a>
         </LogoContainer>
         <MenuSection>
           <NavMenu />

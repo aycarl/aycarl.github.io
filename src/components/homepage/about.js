@@ -20,7 +20,7 @@ const Image = styled.img`
   width: 100%;
 `;
 
-const Jumbotron = () => {
+const About = () => {
   return (
     <HeroContainer>
       {/* <ImageContainer>
@@ -29,11 +29,8 @@ const Jumbotron = () => {
       <ImageContainer>
         <Image src={ProfilePicture} />
       </ImageContainer>
-      <p>Hi! My name is,</p>
-      <h1>Carl Yao Agbenyega</h1>
-      <h1>I bring ideas to life with code.</h1>
     </HeroContainer>
   );
 };
 
-export default Jumbotron;
+export default About;
