@@ -2,14 +2,12 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 import Projects from "./../projects/projects.components";
-import Skills from "./../skills/skills.component";
 import Jumbotron from "../jumbotron/jumbotron.component";
 
-import "./page.styles.css";
-
-const Page = styled.div`
-  padding: 0.5vh 15vw;
-  min-height: 85vh;
+export const Page = styled.div`
+  padding-block: 15vh;
+  padding-inline: 15vw;
+  min-height: min(100vh, 1080px);
 `;
 
 class Homepage extends Component {

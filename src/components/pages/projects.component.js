@@ -1,15 +1,14 @@
-import React from 'react'
+import React from "react";
 
-import Projects from './../projects/projects.components'
-
-import './page.styles.css'
+import Projects from "./../projects/projects.components";
+import { Page } from "./homepage.component";
 
 const ProjectsPage = () => {
-  return(
-    <div className="page">
+  return (
+    <Page>
       <Projects />
-    </div>
+    </Page>
   );
-}
+};
 
-export default ProjectsPage ;
+export default ProjectsPage;

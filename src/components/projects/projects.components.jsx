@@ -1,35 +1,31 @@
 import React from "react";
+import styled from "styled-components";
 
 import ProjectCard from "./project-card.components";
 
-import "./projects.styles.css";
+import { ProjectsList } from "./../../data/projects";
+
+const ProjectCardContainer = styled.div`
+  display: -ms-inline-grid;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+`;
 
 const Projects = () => {
   return (
     <div className="section">
       <h3>Featured Projects</h3>
-      <div className="projectContainer">
-        <ProjectCard
-          projectName="Beautique"
-          description="An ecommerce website"
-          link="http://beautique.herokuapp.com/"
-        />
-        <ProjectCard
-          projectName="School Admin"
-          description="An admin app for k12 schools"
-          link="https://paperhuts.com/school-admin/"
-        />
-        <ProjectCard
-          projectName="Notices"
-          description="A notice board app"
-          link="https://aycarl.github.io/notices/"
-        />
-        <ProjectCard
-          redirectCard
-          projectName="User Interface & Graphic Design Projects"
-          link="https://behance.net/aycarl"
-        />
-      </div>
+      <ProjectCardContainer>
+        {ProjectsList.map((project, idx) => (
+          <ProjectCard
+            key={idx}
+            projectName={project.name}
+            description={project.description}
+            link={project.website}
+          />
+        ))}
+      </ProjectCardContainer>
     </div>
   );
 };
