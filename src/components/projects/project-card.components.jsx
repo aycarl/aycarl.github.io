@@ -1,31 +1,31 @@
 import React from "react";
 import styled from "styled-components";
+import { H3, P } from "../../ui/fonts";
 
 import Logo from "./../../assets/img/aycarl_color_bg-11.png";
 
 const ProjectCardContainer = styled.div`
-  width: min(475px; 90vw);
-  display: inline-block;
-  position: relative;
-  border: 1px solid;
-  box-shadow: 10px 10px #dcf2ff;
+  display: flex;
+  width: 100%;
+  margin-block: 50px;
 `;
 
 const ProjectCardImage = styled.div`
   background-image: url("${Logo}");
-  filter: grayscale(50%);
-  position: relative;
-  height: 200px;
-  width: 100%;
   background-position: center;
   background-size: cover;
+  width: 400px;
+  height: 250px;
+  border: 2px solid black;
+  border-radius: 2px;
+  box-shadow: 10px 10px #5dc4ff;
+  margin-inline: 50px;
 `;
 
-const ProjectNameSlot = styled.div`
-  background-color: #f3f3f3;
-  height: 50px;
-  padding-inline: 10px;
-  padding-block: 10px;
+const ProjectInformation = styled.div`
+  width: max(600px, 100%);
+  height: min(200px, 30vh);
+  background-color: paleredviolet;
 `;
 
 const ProjectCard = (props) => {
@@ -33,10 +33,13 @@ const ProjectCard = (props) => {
     <ProjectCardContainer>
       <a href={props.link} target="_blank" rel="noopener noreferrer">
         <ProjectCardImage />
-        <ProjectNameSlot>
-          <p>{props.projectName}</p>
-        </ProjectNameSlot>
       </a>
+      <ProjectInformation>
+        <H3>{props.projectName}</H3>
+        <P>{props.description}</P>
+        <P>{props.githubRepo}</P>
+        <P>{props.website}</P>
+      </ProjectInformation>
     </ProjectCardContainer>
   );
 };
