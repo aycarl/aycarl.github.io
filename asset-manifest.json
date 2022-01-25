@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.af0aa46b.chunk.css",
+    "main.js": "/static/js/main.268fd6ab.chunk.js",
+    "main.js.map": "/static/js/main.268fd6ab.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.f9342891.js",
+    "runtime-main.js.map": "/static/js/runtime-main.f9342891.js.map",
+    "static/js/2.3d5f3505.chunk.js": "/static/js/2.3d5f3505.chunk.js",
+    "static/js/2.3d5f3505.chunk.js.map": "/static/js/2.3d5f3505.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.144dd1b1fb3080e3487138c3e678d611.js": "/precache-manifest.144dd1b1fb3080e3487138c3e678d611.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.af0aa46b.chunk.css.map": "/static/css/main.af0aa46b.chunk.css.map",
+    "static/js/2.3d5f3505.chunk.js.LICENSE.txt": "/static/js/2.3d5f3505.chunk.js.LICENSE.txt",
+    "static/media/aycarl-11.png": "/static/media/aycarl-11.d56c4a10.png",
+    "static/media/aycarl_color_bg-11.png": "/static/media/aycarl_color_bg-11.3fc43dd2.png",
+    "static/media/behance-logo.svg": "/static/media/behance-logo.4c6b2eca.svg",
+    "static/media/github-logo.svg": "/static/media/github-logo.74192d2d.svg",
+    "static/media/linkedin-logo.svg": "/static/media/linkedin-logo.27edb6c7.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f9342891.js",
+    "static/js/2.3d5f3505.chunk.js",
+    "static/css/main.af0aa46b.chunk.css",
+    "static/js/main.268fd6ab.chunk.js"
+  ]
+}
