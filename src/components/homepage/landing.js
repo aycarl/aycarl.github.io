@@ -58,7 +58,7 @@ const Landing = () => {
           experience in developing scalable distributed systems using
           cloud-based infrastructure.
         </P>
-        <a
+        {/* <a
           href="https://drive.google.com/file/d/1UGPCZe3rQGR3mQF2RCt90SX5i1gMrVkA/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
@@ -66,7 +66,7 @@ const Landing = () => {
           <Button>
             <p>Download my Resume</p>
           </Button>
-        </a>
+        </a> */}
       </Brief>
     </LandingContainer>
   );
