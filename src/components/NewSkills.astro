@@ -1,0 +1,61 @@
+---
+// Modern Skills Component with Tailwind
+
+const skillCategories = [
+  {
+    title: "Frontend Development",
+    skills: ["React", "Redux", "TypeScript", "JavaScript (ES2023)", "D3.js", "HTML5", "CSS3", "Responsive Design", "WCAG Accessibility"]
+  },
+  {
+    title: "Backend & APIs",
+    skills: ["Python", "Django/DRF", "C#", ".NET Core", "REST API Design", "Authentication", "JSON/CSV Pipelines"]
+  },
+  {
+    title: "Data & Databases",
+    skills: ["SQL", "PostgreSQL", "MySQL", "Oracle", "Schema Design", "Query Optimization", "Data Visualization"]
+  },
+  {
+    title: "Dev Practices & Tools",
+    skills: ["Git/GitHub", "Docker", "CI/CD", "Agile/Iterative Delivery", "Code Reviews", "Documentation", "Testing"]
+  },
+  {
+    title: "Design & Research",
+    skills: ["Figma", "Adobe XD", "Adobe Illustrator", "Information Architecture", "Prototyping", "Usability Testing", "Design Systems"]
+  }
+];
+---
+
+<section id="skills" class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800/50" aria-labelledby="skills-heading">
+  <div class="max-w-6xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-12 sm:mb-16">
+      <h2 id="skills-heading" class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">Skills & Expertise</h2>
+      <p class="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        Technologies and tools I work with to build amazing products
+      </p>
+    </div>
+
+    <!-- Skills Grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      {skillCategories.map((category) => (
+        <article class="bg-white dark:bg-gray-800 rounded-lg p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400">
+          <!-- Category Header -->
+          <h3 class="text-base sm:text-lg font-bold text-gray-900 dark:text-gray-100 mb-3 sm:mb-4 pb-2 border-b border-gray-200 dark:border-gray-700">
+            {category.title}
+          </h3>
+
+          <!-- Skills List -->
+          <ul class="flex flex-wrap gap-2" role="list" aria-label={`${category.title} skills`}>
+            {category.skills.map((skill) => (
+              <li>
+                <span class="inline-block px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm rounded-md bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 font-medium hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors">
+                  {skill}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
