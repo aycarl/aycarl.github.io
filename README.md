@@ -1,68 +1,130 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Carl Yao Agbenyega - Portfolio Website
+
+Personal portfolio website showcasing my professional experience, education, and technical skills as a Full-Stack Software Engineer & UX Practitioner.
+
+🌐 **Live Site:** [www.aycarl.com](https://www.aycarl.com)
+
+## Tech Stack
+
+- **[Astro](https://astro.build)** - Static site generator
+- **[TailwindCSS](https://tailwindcss.com)** - Utility-first CSS framework
+- **TypeScript** - Type-safe JavaScript
+- **GitHub Pages** - Hosting and deployment
+
+## Features
+
+- 🎨 Modern, clean design with responsive layout
+- 🌓 Dark/light mode toggle with localStorage persistence
+- ♿ WCAG 2.x accessibility compliant
+- 📱 Mobile-first responsive design
+- ⚡ Blazing fast static site generation
+- 🔍 SEO optimized
+
+## Development
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+### Getting Started
+
+1. Clone the repository:
+```bash
+git clone https://github.com/aycarl/aycarl.github.io.git
+cd aycarl.github.io
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
+```bash
+npm run astro:dev
+```
+
+Open [http://localhost:4321](http://localhost:4321) to view it in the browser. The page will hot-reload when you make changes.
 
 ## Available Scripts
 
-In the project directory, you can run:
+### `npm run astro:dev`
+Starts the Astro development server at `http://localhost:4321`
 
-### `yarn start`
+### `npm run astro:build`
+Builds the site for production to the `dist/` folder. The build is optimized and ready for deployment.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### `npm run astro:preview`
+Preview the production build locally before deploying.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Project Structure
 
-### `yarn test`
+```
+/
+├── public/              # Static assets (images, fonts, etc.)
+├── src/
+│   ├── assets/         # Images and documents
+│   ├── components/     # Astro components
+│   │   ├── icons/      # SVG icon components
+│   │   ├── Hero.astro
+│   │   ├── Experience.astro
+│   │   ├── Education.astro
+│   │   ├── NewSkills.astro
+│   │   ├── NewHeader.astro
+│   │   ├── NewFooter.astro
+│   │   └── ThemeToggle.astro
+│   ├── layouts/        # Page layouts
+│   │   └── BaseLayout.astro
+│   ├── pages/          # File-based routing
+│   │   └── index.astro
+│   └── styles/         # Global styles
+│       └── global.css
+├── astro.config.mjs    # Astro configuration
+├── tailwind.config.mjs # Tailwind configuration
+└── package.json
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Deployment
 
-### `yarn build`
+The site is automatically deployed to GitHub Pages when changes are pushed to the `master` branch.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Manual Deployment
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+1. Build the site:
+```bash
+npm run astro:build
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. The built files in `dist/` are ready to be deployed to any static hosting service.
 
-### `yarn eject`
+## Sections
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- **Hero** - Introduction and quick stats
+- **Experience** - Professional work history with detailed responsibilities
+- **Education** - Academic background and relevant coursework
+- **Skills** - Technical skills organized by category
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Customization
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Updating Content
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- **Work Experience:** Edit `src/components/Experience.astro`
+- **Education:** Edit `src/components/Education.astro`
+- **Skills:** Edit `src/components/NewSkills.astro`
+- **Resume:** Replace `public/Resume-CYA-all_related_experience.pdf`
 
-## Learn More
+### Styling
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The site uses TailwindCSS for styling. Global styles are in `src/styles/global.css`.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
 
-### Code Splitting
+This project is open source and available under the [MIT License](LICENSE).
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Contact
 
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- **Email:** aycarl@hotmail.com
+- **LinkedIn:** [linkedin.com/in/aycarl](https://linkedin.com/in/aycarl)
+- **GitHub:** [github.com/aycarl](https://github.com/aycarl)
+- **Behance:** [behance.net/aycarl](https://behance.net/aycarl)
