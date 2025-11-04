@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+/* Custom scrollbar for webkit browsers */
+@layer utilities {
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom styles */
+:root {
+  color-scheme: light dark;
+}
