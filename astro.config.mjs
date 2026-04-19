@@ -7,15 +7,15 @@ export default defineConfig({
   site: 'https://www.aycarl.com',
   base: '/',
 
-  // Build output directory
+  // Build output directory for the static site
   outDir: './dist',
 
-  // Public assets directory
+  // Public assets served at the site root
   publicDir: './public',
 
-  // GitHub Pages configuration
+  // Static output settings
   build: {
-    // Output assets to a flat structure for GitHub Pages
+    // Use directory-style routes such as /about/index.html
     format: 'directory',
   },
 

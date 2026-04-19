@@ -72,12 +72,12 @@ const experiences = [
 ];
 ---
 
-<section id="experience" class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800/50" aria-labelledby="experience-heading">
+<section id="experience" class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50" aria-labelledby="experience-heading">
   <div class="max-w-5xl mx-auto">
     <!-- Section Header -->
     <div class="text-center mb-12 sm:mb-16">
       <h2 id="experience-heading" class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">Work Experience</h2>
-      <p class="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+      <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
         My professional journey building software and creating digital experiences
       </p>
     </div>
@@ -85,44 +85,44 @@ const experiences = [
     <!-- Timeline -->
     <div class="relative" role="list" aria-label="Work experience timeline">
       <!-- Vertical Line -->
-      <div class="absolute left-6 sm:left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-blue-200 dark:bg-blue-900" aria-hidden="true"></div>
+      <div class="absolute left-6 sm:left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-blue-200" aria-hidden="true"></div>
 
       <!-- Timeline Items -->
       <div class="space-y-8 sm:space-y-12">
         {experiences.map((exp, index) => (
           <div class={`relative ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} flex flex-col md:flex md:gap-8`} role="listitem">
             <!-- Timeline Dot -->
-            <div class="absolute left-6 sm:left-8 md:left-1/2 w-3 h-3 sm:w-4 sm:h-4 -ml-1.5 sm:-ml-2 rounded-full bg-blue-600 dark:bg-blue-400 border-4 border-white dark:border-gray-900 z-10" aria-hidden="true"></div>
+            <div class="absolute left-6 sm:left-8 md:left-1/2 w-3 h-3 sm:w-4 sm:h-4 -ml-1.5 sm:-ml-2 rounded-full bg-blue-600 border-4 border-white z-10" aria-hidden="true"></div>
 
             <!-- Content -->
             <div class={`ml-14 sm:ml-20 md:ml-0 ${index % 2 === 0 ? 'md:pr-8 md:text-right' : 'md:pl-8'} md:w-1/2`}>
-              <article class="bg-white dark:bg-gray-800 rounded-lg p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow border border-gray-200 dark:border-gray-700">
+              <article class="bg-white rounded-lg p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow border border-gray-200">
                 <!-- Icon -->
-                <div class={`inline-flex p-2 rounded-lg bg-blue-100 dark:bg-blue-900/30 mb-3 sm:mb-4 ${index % 2 === 0 ? 'md:float-right md:ml-4' : 'md:float-left md:mr-4'}`} aria-hidden="true">
-                  <Briefcase class="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 dark:text-blue-400" />
+                <div class={`inline-flex p-2 rounded-lg bg-blue-100 mb-3 sm:mb-4 ${index % 2 === 0 ? 'md:float-right md:ml-4' : 'md:float-left md:mr-4'}`} aria-hidden="true">
+                  <Briefcase class="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
                 </div>
 
                 <!-- Period -->
-                <time class="text-xs sm:text-sm font-medium text-blue-600 dark:text-blue-400 mb-2 block">
+                <time class="text-xs sm:text-sm font-medium text-blue-600 mb-2 block">
                   {exp.period}
                 </time>
 
                 <!-- Title & Company -->
-                <h3 class="text-lg sm:text-xl font-bold mb-1 text-gray-900 dark:text-gray-100">
+                <h3 class="text-lg sm:text-xl font-bold mb-1 text-gray-900">
                   {exp.title}
                 </h3>
-                <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 font-medium mb-1">
+                <p class="text-sm sm:text-base text-gray-600 font-medium mb-1">
                   {exp.company}
                 </p>
-                <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-3 sm:mb-4">
+                <p class="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4">
                   {exp.location}
                 </p>
 
                 <!-- Responsibilities -->
-                <ul class={`space-y-2 text-xs sm:text-sm text-gray-600 dark:text-gray-300 ${index % 2 === 0 ? 'md:text-right' : ''}`} aria-label="Key responsibilities">
+                <ul class={`space-y-2 text-xs sm:text-sm text-gray-600 ${index % 2 === 0 ? 'md:text-right' : ''}`} aria-label="Key responsibilities">
                   {exp.responsibilities.map((resp) => (
                     <li class="flex items-start gap-2">
-                      <span class={`text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0 ${index % 2 === 0 ? 'md:order-2' : ''}`} aria-hidden="true">•</span>
+                      <span class={`text-blue-600 mt-1 flex-shrink-0 ${index % 2 === 0 ? 'md:order-2' : ''}`} aria-hidden="true">•</span>
                       <span class="flex-1">{resp}</span>
                     </li>
                   ))}

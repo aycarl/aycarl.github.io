@@ -24,7 +24,7 @@ const education = [
     <!-- Section Header -->
     <div class="text-center mb-12 sm:mb-16">
       <h2 id="education-heading" class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">Education</h2>
-      <p class="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+      <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
         Academic background and relevant coursework
       </p>
     </div>
@@ -32,39 +32,39 @@ const education = [
     <!-- Education Cards -->
     <div class="grid md:grid-cols-2 gap-6 sm:gap-8">
       {education.map((edu) => (
-        <article class="bg-white dark:bg-gray-800 rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400">
+        <article class="bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all border border-gray-200 hover:border-blue-500">
           <!-- Icon -->
-          <div class="inline-flex p-2 sm:p-3 rounded-lg bg-blue-100 dark:bg-blue-900/30 mb-4 sm:mb-6" aria-hidden="true">
-            <AcademicCap class="w-6 h-6 sm:w-8 sm:h-8 text-blue-600 dark:text-blue-400" />
+          <div class="inline-flex p-2 sm:p-3 rounded-lg bg-blue-100 mb-4 sm:mb-6" aria-hidden="true">
+            <AcademicCap class="w-6 h-6 sm:w-8 sm:h-8 text-blue-600" />
           </div>
 
           <!-- Degree -->
-          <h3 class="text-lg sm:text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">
+          <h3 class="text-lg sm:text-xl font-bold mb-2 text-gray-900">
             {edu.degree}
           </h3>
 
           <!-- School -->
-          <p class="text-base sm:text-lg font-semibold text-blue-600 dark:text-blue-400 mb-1">
+          <p class="text-base sm:text-lg font-semibold text-blue-600 mb-1">
             {edu.school}
           </p>
 
           <!-- Location & Period -->
-          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-2">
+          <p class="text-xs sm:text-sm text-gray-600 mb-2">
             {edu.location}
           </p>
-          <p class="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400 mb-4">
+          <p class="text-xs sm:text-sm font-medium text-gray-500 mb-4">
             {edu.period}
           </p>
 
           <!-- Courses -->
           <div>
-            <p class="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+            <p class="text-xs sm:text-sm font-semibold text-gray-700 mb-2">
               Relevant Courses:
             </p>
             <ul class="flex flex-wrap gap-2" role="list" aria-label="Relevant courses">
               {edu.courses.map((course) => (
                 <li>
-                  <span class="px-2.5 py-1 text-xs rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
+                  <span class="px-2.5 py-1 text-xs rounded-full bg-gray-100 text-gray-700">
                     {course}
                   </span>
                 </li>
