@@ -128,8 +128,6 @@ When content is added, pair those collections with matching dynamic routes such 
 
 ## Deployment Notes
 
-Deployment is handled through GitHub Actions rather than a manual local publish step.
+Deployment is handled through GitHub Actions. The workflow at `.github/workflows/astro.yml` runs on every push to `main`, builds the site, and publishes it directly to GitHub Pages using `actions/upload-pages-artifact` + `actions/deploy-pages`. No `gh-pages` branch, `gh-pages` npm package, or manual local publish step is involved.
 
-There is currently **no committed workflow file under `.github/workflows/`** in this repository snapshot, so deployment automation is managed outside the source tree as it exists here.
-
-`package.json` still contains a legacy `gh-pages` dependency and `npm run deploy` script. Treat those as leftover configuration unless deployment is intentionally moved back to `gh-pages`.
+The custom domain is wired up through the `CNAME` file in `public/`.

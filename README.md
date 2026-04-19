@@ -68,11 +68,9 @@ public/
 
 ## Deployment Notes
 
-Deployment is handled through GitHub Actions rather than a local publish step.
+Deployment is handled through GitHub Actions. The workflow at `.github/workflows/astro.yml` runs on every push to `main`, builds the site, and publishes it directly to GitHub Pages via `actions/upload-pages-artifact` + `actions/deploy-pages`. No `gh-pages` branch or local publish step is involved.
 
-The repository does **not** currently include a committed workflow under `.github/workflows/`, so the deployment workflow is managed outside the source tree as it exists here.
-
-`package.json` still includes a legacy `gh-pages` dependency and `npm run deploy` script. Those do not match the preferred deployment path and should be treated as leftover configuration until removed.
+The custom domain is wired up through the `CNAME` file in `public/`.
 
 ## Future Content
 
