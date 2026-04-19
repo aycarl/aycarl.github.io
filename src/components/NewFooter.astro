@@ -1,11 +1,11 @@
 ---
-// Modern Footer with Navigation
+// Footer
 import GitHub from './icons/GitHub.astro';
 import LinkedIn from './icons/LinkedIn.astro';
 import Behance from './icons/Behance.astro';
 ---
 
-<footer class="bg-gray-900 dark:bg-black text-gray-300 border-t border-gray-800" role="contentinfo">
+<footer class="bg-gray-900 text-gray-300 border-t border-gray-800" role="contentinfo">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
     <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
       <!-- About -->
@@ -41,6 +41,16 @@ import Behance from './icons/Behance.astro';
                 Skills
               </a>
             </li>
+            <li>
+              <a href="/blog" class="text-xs sm:text-sm text-gray-400 hover:text-blue-400 focus:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900 rounded transition-colors">
+                Blog
+              </a>
+            </li>
+            <li>
+              <a href="/docs" class="text-xs sm:text-sm text-gray-400 hover:text-blue-400 focus:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900 rounded transition-colors">
+                Docs
+              </a>
+            </li>
           </ul>
         </nav>
       </div>
@@ -49,7 +59,7 @@ import Behance from './icons/Behance.astro';
       <div>
         <h3 class="font-bold text-white mb-3 sm:mb-4 text-sm sm:text-base">Connect</h3>
         <div class="space-y-3">
-          <!-- Email & Phone -->
+          <!-- Email -->
           <ul class="space-y-2" role="list">
             <li>
               <a href="mailto:aycarl@hotmail.com" class="text-xs sm:text-sm text-gray-400 hover:text-blue-400 focus:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900 rounded transition-colors flex items-center gap-2" aria-label="Send me an email">
@@ -59,14 +69,6 @@ import Behance from './icons/Behance.astro';
                 </svg>
                 <span class="break-all">aycarl@hotmail.com</span>
               </a>
-            </li>
-            <li>
-              <span class="text-xs sm:text-sm text-gray-400 flex items-center gap-2">
-                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
-                </svg>
-                <span>+1 (505) 359-1888</span>
-              </span>
             </li>
           </ul>
 
