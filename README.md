@@ -1,12 +1,16 @@
 # aycarl.github.io
 
-Personal portfolio site for [www.aycarl.com](https://www.aycarl.com), built with [Astro](https://astro.build) and [TailwindCSS](https://tailwindcss.com), deployed via GitHub Pages.
+Personal portfolio site for [www.aycarl.com](https://www.aycarl.com), built with [Astro](https://astro.build) and [TailwindCSS](https://tailwindcss.com).
 
-## Tech Stack
+## Current State
 
-- **Framework**: Astro (static site generator)
-- **Styling**: TailwindCSS v4
-- **Deployment**: GitHub Pages via `gh-pages`
+- **Framework**: Astro 5
+- **Styling**: TailwindCSS v4, single light theme
+- **Package manager**: npm
+- **Routing**: file-based Astro pages
+- **Deployment**: GitHub Actions driven
+
+This repo currently contains placeholder pages for `/blog` and `/docs`, plus lightweight static pages for `/about` and `/projects`.
 
 ## Development
 
@@ -22,23 +26,15 @@ npm run build
 
 # Preview production build locally
 npm run preview
-
-# Build and deploy to GitHub Pages
-npm run deploy
 ```
 
 ## Project Structure
 
-```
+```text
 src/
-├── pages/             # File-based routing
-│   ├── index.astro    # Home (all portfolio sections)
-│   ├── about.astro
-│   ├── projects.astro
-│   ├── blog.astro     # Blog placeholder
-│   └── docs.astro     # Project documentation placeholder
-├── layouts/
-│   └── BaseLayout.astro
+├── assets/
+│   ├── docs/          # Legacy document assets not linked from the live site
+│   └── img/           # Local image assets
 ├── components/
 │   ├── Hero.astro
 │   ├── Experience.astro
@@ -47,6 +43,14 @@ src/
 │   ├── NewHeader.astro
 │   ├── NewFooter.astro
 │   └── icons/
+├── layouts/
+│   └── BaseLayout.astro
+├── pages/
+│   ├── index.astro    # Home page
+│   ├── about.astro    # Static placeholder page
+│   ├── projects.astro # Static placeholder page
+│   ├── blog.astro     # Blog placeholder page
+│   └── docs.astro     # Documentation placeholder page
 └── styles/
     └── global.css
 public/
@@ -54,10 +58,22 @@ public/
 └── robots.txt
 ```
 
-## Deployment
+## Routes
 
-```bash
-npm run deploy
-```
+- `/` home page with experience, education, and skills sections
+- `/about` static placeholder page
+- `/projects` static placeholder page
+- `/blog` placeholder page for future writing
+- `/docs` placeholder page for future project documentation
 
-Builds to `dist/` and pushes the artifacts to the `gh-pages` branch, which GitHub Pages serves at `www.aycarl.com`.
+## Deployment Notes
+
+Deployment is handled through GitHub Actions rather than a local publish step.
+
+The repository does **not** currently include a committed workflow under `.github/workflows/`, so the deployment workflow is managed outside the source tree as it exists here.
+
+`package.json` still includes a legacy `gh-pages` dependency and `npm run deploy` script. Those do not match the preferred deployment path and should be treated as leftover configuration until removed.
+
+## Future Content
+
+When blog posts and project documentation are ready, the next step is to add Astro Content Collections under `src/content/blog/` and `src/content/docs/`, then introduce matching dynamic routes.
