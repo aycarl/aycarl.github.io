@@ -1,68 +1,79 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# aycarl.github.io
 
-## Available Scripts
+Personal portfolio site for [www.aycarl.com](https://www.aycarl.com), built with [Astro](https://astro.build) and [TailwindCSS](https://tailwindcss.com).
 
-In the project directory, you can run:
+## Current State
 
-### `yarn start`
+- **Framework**: Astro 5
+- **Styling**: TailwindCSS v4, single light theme
+- **Package manager**: npm
+- **Routing**: file-based Astro pages
+- **Deployment**: GitHub Actions driven
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This repo currently contains placeholder pages for `/blog` and `/docs`, plus lightweight static pages for `/about` and `/projects`.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Development
 
-### `yarn test`
+```bash
+# Install dependencies
+npm install
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Start local dev server at http://localhost:4321
+npm run dev
 
-### `yarn build`
+# Build for production
+npm run build
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Preview production build locally
+npm run preview
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Project Structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```text
+src/
+├── assets/
+│   ├── docs/          # Legacy document assets not linked from the live site
+│   └── img/           # Local image assets
+├── components/
+│   ├── Hero.astro
+│   ├── Experience.astro
+│   ├── Education.astro
+│   ├── NewSkills.astro
+│   ├── NewHeader.astro
+│   ├── NewFooter.astro
+│   └── icons/
+├── layouts/
+│   └── BaseLayout.astro
+├── pages/
+│   ├── index.astro    # Home page
+│   ├── about.astro    # Static placeholder page
+│   ├── projects.astro # Static placeholder page
+│   ├── blog.astro     # Blog placeholder page
+│   └── docs.astro     # Documentation placeholder page
+└── styles/
+    └── global.css
+public/
+├── favicon.ico
+└── robots.txt
+```
 
-### `yarn eject`
+## Routes
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- `/` home page with experience, education, and skills sections
+- `/about` static placeholder page
+- `/projects` static placeholder page
+- `/blog` placeholder page for future writing
+- `/docs` placeholder page for future project documentation
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Deployment Notes
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Deployment is handled through GitHub Actions rather than a local publish step.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The repository does **not** currently include a committed workflow under `.github/workflows/`, so the deployment workflow is managed outside the source tree as it exists here.
 
-## Learn More
+`package.json` still includes a legacy `gh-pages` dependency and `npm run deploy` script. Those do not match the preferred deployment path and should be treated as leftover configuration until removed.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Future Content
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+When blog posts and project documentation are ready, the next step is to add Astro Content Collections under `src/content/blog/` and `src/content/docs/`, then introduce matching dynamic routes.
