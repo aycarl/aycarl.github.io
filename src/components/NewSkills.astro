@@ -38,7 +38,7 @@ const skillCategories = [
     <!-- Skills Grid -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
       {skillCategories.map((category) => (
-        <article class="bg-white rounded-lg p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all border border-gray-200 hover:border-blue-500:border-blue-400">
+        <article class="bg-white rounded-lg p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all border border-gray-200 hover:border-blue-500">
           <!-- Category Header -->
           <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4 pb-2 border-b border-gray-200">
             {category.title}
@@ -48,7 +48,7 @@ const skillCategories = [
           <ul class="flex flex-wrap gap-2" role="list" aria-label={`${category.title} skills`}>
             {category.skills.map((skill) => (
               <li>
-                <span class="inline-block px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm rounded-md bg-blue-50 text-blue-700 font-medium hover:bg-blue-100:bg-blue-900/30 transition-colors">
+                <span class="inline-block px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm rounded-md bg-blue-50 text-blue-700 font-medium hover:bg-blue-100 transition-colors">
                   {skill}
                 </span>
               </li>
