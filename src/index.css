@@ -1,0 +1,168 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap");
+@import "highlight.js/styles/github.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* aycarl. design system — minimalist + playful
+   All colors HSL. Palette derived from the aycarl colored mark. */
+
+@layer base {
+  :root {
+    --paper: 43 33% 98%;
+    --ink: 0 0% 7%;
+    --ink-soft: 0 0% 30%;
+    --muted-ink: 0 0% 55%;
+    --rule: 0 0% 88%;
+
+    /* Playful palette */
+    --sky: 197 88% 73%;
+    --green: 145 41% 51%;
+    --yellow: 45 96% 64%;
+    --pink: 336 86% 70%;
+    --orange: 11 100% 65%;
+
+    /* Shadcn semantic tokens mapped to our palette */
+    --background: var(--paper);
+    --foreground: var(--ink);
+
+    --card: var(--paper);
+    --card-foreground: var(--ink);
+
+    --popover: 0 0% 100%;
+    --popover-foreground: var(--ink);
+
+    --primary: var(--ink);
+    --primary-foreground: var(--paper);
+
+    --secondary: 43 20% 94%;
+    --secondary-foreground: var(--ink);
+
+    --muted: 43 20% 94%;
+    --muted-foreground: var(--muted-ink);
+
+    --accent: var(--yellow);
+    --accent-foreground: var(--ink);
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: var(--rule);
+    --input: var(--rule);
+    --ring: var(--ink);
+
+    --radius: 1rem;
+
+    --sidebar-background: var(--paper);
+    --sidebar-foreground: var(--ink);
+    --sidebar-primary: var(--ink);
+    --sidebar-primary-foreground: var(--paper);
+    --sidebar-accent: 43 20% 94%;
+    --sidebar-accent-foreground: var(--ink);
+    --sidebar-border: var(--rule);
+    --sidebar-ring: var(--ink);
+  }
+
+  .dark {
+    --paper: 0 0% 7%;
+    --ink: 43 33% 96%;
+    --rule: 0 0% 18%;
+    --background: var(--paper);
+    --foreground: var(--ink);
+    --card: 0 0% 9%;
+    --card-foreground: var(--ink);
+    --popover: 0 0% 9%;
+    --popover-foreground: var(--ink);
+    --primary: var(--ink);
+    --primary-foreground: var(--paper);
+    --secondary: 0 0% 14%;
+    --secondary-foreground: var(--ink);
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 65%;
+    --accent: var(--yellow);
+    --accent-foreground: 0 0% 7%;
+    --border: var(--rule);
+    --input: var(--rule);
+    --ring: var(--ink);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  ::selection {
+    background: hsl(var(--yellow));
+    color: hsl(var(--ink));
+  }
+}
+
+@layer components {
+  .wordmark {
+    @apply font-light tracking-[-0.04em] leading-[0.9];
+    font-weight: 200;
+  }
+
+  .blob {
+    @apply absolute rounded-full pointer-events-none;
+    mix-blend-mode: multiply;
+    opacity: 0.78;
+    filter: blur(2px);
+  }
+
+  .dark .blob {
+    mix-blend-mode: screen;
+    opacity: 0.55;
+  }
+
+  .prose-aycarl {
+    @apply max-w-none text-foreground;
+  }
+  .prose-aycarl h1 { @apply text-4xl md:text-5xl font-light tracking-tight mt-12 mb-6; }
+  .prose-aycarl h2 { @apply text-2xl md:text-3xl font-light tracking-tight mt-12 mb-4; }
+  .prose-aycarl h3 { @apply text-xl font-medium mt-8 mb-3; }
+  .prose-aycarl p { @apply text-base md:text-lg leading-relaxed my-4 text-foreground/85; }
+  .prose-aycarl a { @apply underline decoration-1 underline-offset-4 decoration-foreground/40 hover:decoration-foreground transition-colors; }
+  .prose-aycarl ul { @apply list-disc pl-6 my-4 space-y-2 text-foreground/85; }
+  .prose-aycarl ol { @apply list-decimal pl-6 my-4 space-y-2 text-foreground/85; }
+  .prose-aycarl blockquote { @apply border-l-2 border-foreground/30 pl-4 italic my-6 text-foreground/70; }
+  .prose-aycarl code { @apply bg-muted px-1.5 py-0.5 rounded text-sm font-mono; }
+  .prose-aycarl pre { @apply bg-muted p-4 rounded-lg overflow-x-auto my-6 text-sm; }
+  .prose-aycarl pre code { @apply bg-transparent p-0; }
+  .prose-aycarl img { @apply rounded-2xl my-8 w-full; }
+  .prose-aycarl hr { @apply border-border my-12; }
+}
+
+@layer utilities {
+  @keyframes drift-1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(3%, -2%) scale(1.05); }
+  }
+  @keyframes drift-2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-2%, 3%) scale(0.97); }
+  }
+  @keyframes drift-3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(2%, 2%) scale(1.03); }
+  }
+  .animate-drift-1 { animation: drift-1 14s ease-in-out infinite; }
+  .animate-drift-2 { animation: drift-2 18s ease-in-out infinite; }
+  .animate-drift-3 { animation: drift-3 22s ease-in-out infinite; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-drift-1, .animate-drift-2, .animate-drift-3 { animation: none; }
+  }
+}
