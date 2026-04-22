@@ -10,11 +10,11 @@ const About = () => {
         <div className="md:col-span-7">
           <p className="text-sm uppercase tracking-widest text-foreground/60 mb-4">About</p>
           <h1 className="wordmark text-6xl md:text-8xl mb-8">
-            Hi, I'm aycarl<span className="text-yellow">.</span>
+            Hi, I'm Carl<span className="text-yellow">.</span>
           </h1>
           <div className="space-y-5 text-lg text-foreground/80">
             <p>
-              I'm a software engineer and solutions architect. I spend my time on the
+              I'm a full-stack software engineer and solutions architect. I spend my time on the
               boundary between product and infrastructure — designing systems that earn
               their complexity and shipping the smallest version that proves the idea.
             </p>
@@ -25,19 +25,20 @@ const About = () => {
               for organizations navigating cloud, data, and platform decisions.
             </p>
             <p>
-              Outside of work I sketch, garden, and read more than I write. The colored dot
-              after the wordmark is on purpose — small punctuation, big personality.
+              Outside of work, and in no particular order, I practice Japanese and Zulu on Duolingo, 
+              walk, play chess, experience the Tao, and read more than I write. 
+              The colored dot after the wordmark is on purpose — small punctuation, simple, straight-forward.
             </p>
           </div>
 
           <div className="mt-10 flex flex-wrap gap-4">
-            <a href="mailto:hello@aycarl.dev" className="inline-flex items-center gap-2 rounded-full bg-foreground text-background px-6 py-3 text-sm">
+            <a href="mailto:hello@aycarl.com" className="inline-flex items-center gap-2 rounded-full bg-foreground text-background px-6 py-3 text-sm">
               <Mail className="h-4 w-4" /> Get in touch
             </a>
             <a href="https://github.com/aycarl" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm hover:bg-secondary transition-colors">
               <BrandGithub className="h-4 w-4" /> GitHub
             </a>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm hover:bg-secondary transition-colors">
+            <a href="https://www.linkedin.com/in/aycarl" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm hover:bg-secondary transition-colors">
               <BrandLinkedin className="h-4 w-4" /> LinkedIn
             </a>
           </div>
