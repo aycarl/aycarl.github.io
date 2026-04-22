@@ -1,6 +1,7 @@
 import { SiteLayout } from "@/components/SiteLayout";
 import { Blob } from "@/components/Blob";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import { BrandGithub, BrandLinkedin } from "@/components/icons/BrandIcons";
 
 const About = () => {
   return (
@@ -34,10 +35,10 @@ const About = () => {
               <Mail className="h-4 w-4" /> Get in touch
             </a>
             <a href="https://github.com/aycarl" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm hover:bg-secondary transition-colors">
-              <Github className="h-4 w-4" /> GitHub
+              <BrandGithub className="h-4 w-4" /> GitHub
             </a>
             <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm hover:bg-secondary transition-colors">
-              <Linkedin className="h-4 w-4" /> LinkedIn
+              <BrandLinkedin className="h-4 w-4" /> LinkedIn
             </a>
           </div>
         </div>
