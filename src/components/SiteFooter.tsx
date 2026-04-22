@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import { BrandGithub, BrandLinkedin } from "@/components/icons/BrandIcons";
 
 const dots = ["bg-sky", "bg-green", "bg-yellow", "bg-pink", "bg-orange"];
 
@@ -38,13 +39,13 @@ export const SiteFooter = () => {
             </p>
           </div>
           <div className="flex items-center gap-5 text-foreground/70">
-            <a href="https://github.com/aycarl" target="_blank" rel="noreferrer" aria-label="GitHub" className="hover:text-foreground transition-colors">
-              <Github className="h-5 w-5" />
+            <a href="https://github.com/aycarl" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="hover:text-foreground transition-colors">
+              <BrandGithub className="h-5 w-5" />
             </a>
-            <a href="https://www.linkedin.com/in/aycarl" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hover:text-foreground transition-colors">
-              <Linkedin className="h-5 w-5" />
+            <a href="https://www.linkedin.com/in/aycarl" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-foreground transition-colors">
+              <BrandLinkedin className="h-5 w-5" />
             </a>
-            <a href="mailto:hello@aycarl.dev" aria-label="Email" className="hover:text-foreground transition-colors">
+            <a href="mailto:hello@aycarl.com" aria-label="Email" className="hover:text-foreground transition-colors">
               <Mail className="h-5 w-5" />
             </a>
           </div>

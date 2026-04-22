@@ -1,8 +1,9 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Markdown } from "@/components/Markdown";
-import { getProjectBySlug } from "@/content/projects";
+import { fetchProjectBySlug } from "@/lib/craft";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 
 const accentDot: Record<string, string> = {
@@ -15,13 +16,34 @@ const accentDot: Record<string, string> = {
 
 const Project = () => {
   const { slug } = useParams<{ slug: string }>();
-  const project = slug ? getProjectBySlug(slug) : undefined;
+  const { data: project, isLoading, error } = useQuery({
+    queryKey: ["project", slug],
+    queryFn: () => fetchProjectBySlug(slug!),
+    enabled: !!slug,
+  });
 
   useEffect(() => {
     if (project) document.title = `${project.title} — aycarl.`;
   }, [project]);
 
-  if (!project) {
+  if (isLoading) {
+    return (
+      <SiteLayout>
+        <div className="container py-24 max-w-3xl">
+          <div className="h-4 w-40 bg-secondary rounded animate-pulse mb-6" />
+          <div className="h-12 w-3/4 bg-secondary rounded animate-pulse mb-4" />
+          <div className="h-8 w-2/3 bg-secondary rounded animate-pulse mb-12" />
+          <div className="space-y-3">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div key={i} className="h-4 bg-secondary rounded animate-pulse" style={{ width: `${84 + (i % 3) * 6}%` }} />
+            ))}
+          </div>
+        </div>
+      </SiteLayout>
+    );
+  }
+
+  if (error || !project) {
     return (
       <SiteLayout>
         <div className="container py-24">
