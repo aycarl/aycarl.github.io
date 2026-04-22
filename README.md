@@ -2,7 +2,7 @@
 
 Portfolio site for [www.aycarl.com](https://www.aycarl.com), built as a React single-page application with Vite, TypeScript, React Router, Tailwind CSS, and a small shadcn/ui component layer.
 
-This repository is no longer an Astro site. The current application is a client-rendered portfolio with three main content areas:
+This repository is no longer an Astro site. The current application is a client-rendered portfolio with four main content areas:
 
 - a home page that highlights writing and selected projects
 - a writing section backed by the public Craft API
