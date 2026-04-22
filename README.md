@@ -6,7 +6,8 @@ This repository is no longer an Astro site. The current application is a client-
 
 - a home page that highlights writing and selected projects
 - a writing section backed by the public Craft API
-- locally maintained project, experience, education, and skills content stored in TypeScript modules
+- a projects section backed by the same Craft API
+- locally maintained experience, education, and skills content stored in TypeScript modules
 
 ## Stack at a glance
 
@@ -92,14 +93,13 @@ The writing section uses `src/lib/craft.ts` to call a public Craft API endpoint.
 
 ### 2. Local portfolio content
 
-Projects, experience, education, and skills live in these files:
+Experience, education, and skills live in these files:
 
-- `src/content/projects.ts`
 - `src/content/experience.ts`
 - `src/content/education.ts`
 - `src/content/skills.ts`
 
-If you want to update most of the portfolio content, these files are the first place to edit.
+Projects are fetched from Craft through `src/lib/craft.ts`.
 
 ## Deployment
 

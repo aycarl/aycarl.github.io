@@ -95,17 +95,17 @@ The app uses a small number of repeatable patterns.
 
 ### Static or mostly static pages
 
-Pages such as `About`, `Projects`, and `Experience` mostly render local content or inline text. They are straightforward React components with Tailwind classes applied directly in JSX.
+Pages such as `About` and `Experience` mostly render local content or inline text. They are straightforward React components with Tailwind classes applied directly in JSX.
 
 ### Data-backed pages
 
-Pages in the writing section use TanStack Query to fetch data from Craft. They usually implement three states:
+Pages in the writing and projects sections use TanStack Query to fetch data from Craft. They usually implement three states:
 
 - loading
 - error or missing content
 - successful render
 
-That pattern is visible in `Writing.tsx`, `Post.tsx`, `Archive.tsx`, `Tag.tsx`, and `SearchPage.tsx`.
+That pattern is visible in `Writing.tsx`, `Post.tsx`, `Archive.tsx`, `Tag.tsx`, `SearchPage.tsx`, `Projects.tsx`, and `Project.tsx`.
 
 ### Markdown-backed pages
 
@@ -113,6 +113,8 @@ Two areas render Markdown:
 
 - project detail pages render local Markdown stored in `src/content/projects.ts`
 - writing detail pages render Markdown assembled from Craft blocks
+
+Both writing and projects now assemble detail page markdown from Craft blocks.
 
 Both use `src/components/Markdown.tsx`, which wraps `react-markdown` with GitHub Flavored Markdown support and syntax highlighting.
 
@@ -124,22 +126,21 @@ There are two separate content systems in the app.
 
 The `src/content/` folder stores TypeScript arrays and helper functions for:
 
-- projects
 - experience
 - education
 - skills
 
 This content is versioned with the codebase and deployed as part of the built app.
 
-### Remote writing content
+### Remote writing and project content
 
-The writing system is implemented in `src/lib/craft.ts`.
+The writing and project systems are implemented in `src/lib/craft.ts`.
 
 That file does several jobs:
 
 - defines the Craft API base URL and collection IDs
-- fetches post lists
-- fetches a full post by slug
+- fetches post lists and project lists
+- fetches a full post and full project by slug
 - calculates reading time
 - normalizes tags and publication status
 - performs search across the Craft document
@@ -147,8 +148,8 @@ That file does several jobs:
 
 This split is important for maintenance:
 
-- local portfolio content can be changed with a code edit only
-- writing content depends on the external Craft service being available and returning the expected document structure
+- local portfolio experience content can be changed with a code edit only
+- writing and project content depend on the external Craft service being available and returning the expected document structure
 
 ## 7. Styling system
 

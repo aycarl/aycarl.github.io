@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { SiteLayout } from "@/components/SiteLayout";
-import { projects } from "@/content/projects";
+import { fetchProjects } from "@/lib/craft";
 
 const accentDot: Record<string, string> = {
   sky: "bg-sky",
@@ -11,6 +12,8 @@ const accentDot: Record<string, string> = {
 };
 
 const Projects = () => {
+  const { data: projects, isLoading, error } = useQuery({ queryKey: ["projects"], queryFn: fetchProjects });
+
   return (
     <SiteLayout>
       <section className="container py-16 md:py-24">
@@ -22,8 +25,11 @@ const Projects = () => {
           Selected work across systems design, infrastructure, and platform engineering.
         </p>
 
+        {isLoading && <p className="mt-16 text-muted-foreground">Loading projects...</p>}
+        {error && <p className="mt-16 text-destructive">Couldn't load projects. Try again shortly.</p>}
+
         <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects.map((p) => (
+          {(projects ?? []).map((p) => (
             <Link
               key={p.slug}
               to={`/projects/${p.slug}`}
@@ -47,6 +53,9 @@ const Projects = () => {
               </div>
             </Link>
           ))}
+          {projects && projects.length === 0 && !isLoading && (
+            <p className="text-muted-foreground">No published projects yet.</p>
+          )}
         </div>
       </section>
     </SiteLayout>

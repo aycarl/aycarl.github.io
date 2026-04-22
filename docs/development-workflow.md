@@ -120,6 +120,8 @@ Likely causes:
 - the hard-coded document or collection IDs changed
 - the browser cannot reach the public endpoint
 
+The same checks apply to project pages because they now use the same Craft API client.
+
 ### A route exists but the link is missing from navigation
 
 The route table and the nav links are maintained separately.

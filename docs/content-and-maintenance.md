@@ -10,45 +10,44 @@ The portfolio content is split into two categories.
 
 These files are edited directly in the codebase:
 
-- `src/content/projects.ts`
 - `src/content/experience.ts`
 - `src/content/education.ts`
 - `src/content/skills.ts`
 
 Use these files for structured content that is part of the portfolio itself.
 
-### Remote writing content in Craft
+### Remote writing and project content in Craft
 
-Writing content is not stored under `src/content/`. Instead, it is fetched at runtime from the Craft API through `src/lib/craft.ts`.
+Writing and project content are not stored under `src/content/`. They are fetched at runtime from the Craft API through `src/lib/craft.ts`.
 
-Use Craft for essays, notes, and searchable writing content.
+Use Craft for essays, notes, and project case studies.
 
 ## 2. How to edit projects
 
-Projects live in `src/content/projects.ts`.
+Projects are fetched from Craft through `src/lib/craft.ts`.
 
 Each project includes:
 
 - `slug` for the project URL
 - `title` and `summary`
-- `role`
-- `stack`
-- `year`
-- `accent` for visual styling
+- `role` (or project label fallback)
+- `stack` from tags
+- `year` from explicit year or project date
+- `accent` for visual styling (explicit or generated fallback)
 - optional external `links`
-- `body` as a Markdown string used on the detail page
+- `body` markdown assembled from Craft blocks
 
 ### To add a new project
 
-1. add a new object to the `projects` array
-2. choose a unique `slug`
-3. keep `summary` short because it appears in listing cards
-4. write the long-form case study in `body` using Markdown
+1. add or edit an item in the Craft Projects collection
+2. use a clear title because the URL slug is derived from title text
+3. keep the lead paragraph concise because summaries are generated from preview content
+4. set tags for stack chips and set `published` when you want the project visible
 5. run the app and check both `/projects` and `/projects/:slug`
 
 ### To remove or rename a project
 
-If you change a `slug`, you are changing the route. Update any links that point to the old route.
+Because slugs are generated from titles, changing a project title changes the route. Update any internal links pointing to the old slug.
 
 ## 3. How to edit experience, education, and skills
 
@@ -89,7 +88,7 @@ The header also contains the mobile menu, so a navigation change should always b
 
 ## 6. How the writing section works
 
-The writing pages depend on `src/lib/craft.ts`.
+The writing and projects pages depend on `src/lib/craft.ts`.
 
 That file is responsible for:
 
@@ -102,7 +101,7 @@ That file is responsible for:
 
 ### Important consequence
 
-If the writing section breaks, the problem may not be in the page components. It may be caused by:
+If the writing or projects sections break, the problem may not be in the page components. It may be caused by:
 
 - the Craft API being unavailable
 - changed document IDs or collection IDs

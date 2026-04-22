@@ -2,8 +2,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { SiteLayout } from "@/components/SiteLayout";
 import { HeroBlobField } from "@/components/Blob";
-import { fetchPosts } from "@/lib/craft";
-import { projects } from "@/content/projects";
+import { fetchPosts, fetchProjects } from "@/lib/craft";
 import { ArrowUpRight } from "lucide-react";
 
 const accentDot: Record<string, string> = {
@@ -19,8 +18,9 @@ const formatDate = (d: string) =>
 
 const Index = () => {
   const { data: allPosts } = useQuery({ queryKey: ["posts"], queryFn: fetchPosts });
+  const { data: allProjects } = useQuery({ queryKey: ["projects"], queryFn: fetchProjects });
   const posts = (allPosts ?? []).slice(0, 3);
-  const featured = projects.slice(0, 3);
+  const featured = (allProjects ?? []).slice(0, 3);
 
   return (
     <SiteLayout>

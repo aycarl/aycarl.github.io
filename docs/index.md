@@ -17,7 +17,8 @@ The site has three main responsibilities:
 
 - present a strong landing page and personal brand
 - publish writing fetched from Craft through a public API
-- display project, experience, education, and skills content stored locally in the codebase
+- publish projects fetched from Craft through a public API
+- display experience, education, and skills content stored locally in the codebase
 
 ## Mental model
 
@@ -28,7 +29,7 @@ The easiest way to understand the app is to follow the request path from top to 
 3. `src/App.tsx` wraps the app in providers and defines the routes
 4. each route renders a page component from `src/pages/`
 5. most pages render inside `SiteLayout`, which adds the shared header and footer
-6. pages either read local content from `src/content/` or remote writing data through `src/lib/craft.ts`
+6. pages either read local content from `src/content/` or remote writing and project data through `src/lib/craft.ts`
 
 ## Where to go for common tasks
 
@@ -46,8 +47,8 @@ These are the files a maintainer will touch most often:
 - `src/components/SiteLayout.tsx` for shared page chrome
 - `src/components/SiteHeader.tsx` and `src/components/SiteFooter.tsx` for global navigation and footer links
 - `src/pages/` for route-level UI
-- `src/content/` for locally authored portfolio data
-- `src/lib/craft.ts` for remote writing data and search behavior
+- `src/content/` for locally authored experience, education, and skills data
+- `src/lib/craft.ts` for remote writing and project data
 - `src/index.css` for design tokens, typography, prose styles, and motion helpers
 
 ## What to ignore at first
