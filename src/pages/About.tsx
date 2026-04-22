@@ -33,21 +33,21 @@ const About = () => {
             <a href="mailto:hello@aycarl.dev" className="inline-flex items-center gap-2 rounded-full bg-foreground text-background px-6 py-3 text-sm">
               <Mail className="h-4 w-4" /> Get in touch
             </a>
-            <a href="https://github.com/aycarl" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm hover:bg-secondary transition-colors">
+            <a href="https://github.com/aycarl" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm hover:bg-secondary transition-colors">
               <Github className="h-4 w-4" /> GitHub
             </a>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm hover:bg-secondary transition-colors">
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm hover:bg-secondary transition-colors">
               <Linkedin className="h-4 w-4" /> LinkedIn
             </a>
           </div>
         </div>
         <div className="md:col-span-5">
           <div className="relative aspect-square rounded-3xl border border-border overflow-hidden bg-card">
-            <Blob color="sky"    size={260} top="-10%"  left="-10%" drift={1} />
-            <Blob color="green"  size={220} top="20%"   left="35%"  drift={2} />
-            <Blob color="yellow" size={180} bottom="-5%" right="20%" drift={3} />
-            <Blob color="pink"   size={200} bottom="10%" left="-5%" drift={1} />
-            <Blob color="orange" size={160} top="5%"    right="-5%" drift={2} />
+            <Blob color="sky" className="-left-[10%] -top-[10%] h-[260px] w-[260px]" drift={1} />
+            <Blob color="green" className="left-[35%] top-[20%] h-[220px] w-[220px]" drift={2} />
+            <Blob color="yellow" className="right-[20%] -bottom-[5%] h-[180px] w-[180px]" drift={3} />
+            <Blob color="pink" className="-left-[5%] bottom-[10%] h-[200px] w-[200px]" drift={1} />
+            <Blob color="orange" className="-right-[5%] top-[5%] h-[160px] w-[160px]" drift={2} />
           </div>
           <div className="mt-6 rounded-2xl border border-border p-5 bg-card">
             <h3 className="text-sm uppercase tracking-widest text-foreground/60 mb-3">Currently</h3>

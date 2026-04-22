@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { SiteLayout } from "@/components/SiteLayout";
-import { BlobField } from "@/components/Blob";
+import { HeroBlobField } from "@/components/Blob";
 import { fetchPosts } from "@/lib/craft";
 import { projects } from "@/content/projects";
 import { ArrowUpRight } from "lucide-react";
@@ -25,19 +25,19 @@ const Index = () => {
   return (
     <SiteLayout>
       {/* Hero */}
-      <section className="relative">
-        <BlobField className="h-[640px] md:h-[720px]" />
+      <section className="relative overflow-hidden bg-secondary/70">
+        <HeroBlobField />
         <div className="container relative pt-20 md:pt-32 pb-24 md:pb-40">
           <div className="max-w-4xl">
             <p className="text-sm tracking-widest uppercase text-foreground/60 mb-6 animate-fade-up">
-              Solutions architect · systems writer
+              Solutions architect · Full-Stack Software Engineer
             </p>
             <h1 className="wordmark text-[18vw] md:text-[12rem] leading-[0.85] animate-fade-up">
               aycarl<span className="text-orange">.</span>
             </h1>
             <p className="mt-8 max-w-2xl text-xl md:text-2xl font-light text-foreground/80 animate-fade-up">
               I design systems that hold up under real load, and write about the messy middle
-              between requirements and runtime.
+              between requirements, runtime and real life.
             </p>
             <div className="mt-10 flex flex-wrap gap-3 animate-fade-up">
               <Link
