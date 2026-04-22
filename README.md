@@ -54,7 +54,7 @@ src/
 ├── pages/                   # Route-level screens
 ├── components/              # Shared layout, markdown, navigation, visual pieces
 ├── components/ui/           # shadcn/ui generated primitives
-├── content/                 # Local portfolio data for projects, experience, education, skills
+├── content/                 # Local portfolio data for experience, education, skills
 ├── lib/                     # Shared utilities and Craft API client
 ├── hooks/                   # Shared hooks
 ├── test/                    # Test setup and examples

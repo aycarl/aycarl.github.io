@@ -87,7 +87,7 @@ The project uses the `@` alias for imports from `src/`.
 Examples:
 
 - `@/components/SiteLayout`
-- `@/content/projects`
+- `@/content/experience`
 - `@/lib/craft`
 
 This alias is defined in two places and both matter:
