@@ -226,7 +226,7 @@ const itemToProject = (item: CraftCollectionItem): Project => {
         : new Date().getFullYear(),
     accent,
     links: parseProjectLinks(item.properties?.links),
-    published: parsePublished(item.properties?.published, true),
+    published: parsePublished(item.properties?.published, false),
     date,
   };
 };
