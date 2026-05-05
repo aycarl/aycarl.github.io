@@ -22,6 +22,9 @@ const POSTS_COLLECTION_ID = "769CD161-FC8A-4B52-83AA-36A192AF9FCA";
 const SITE_URL = "https://www.aycarl.com";
 const FEED_PATH = path.resolve(process.cwd(), "dist", "feed.xml");
 
+// Craft's content-preview API appends this suffix when it truncates text.
+const CRAFT_PREVIEW_SUFFIX_PATTERN = /\.\.\.and \d+ more blocks?$/i;
+
 // ---------------------------------------------------------------------------
 // Helpers — mirrors the parsing logic in src/lib/craft.ts
 // ---------------------------------------------------------------------------
@@ -65,7 +68,7 @@ function stripMarkdown(md) {
 
 function itemToPost(item) {
   const title = item.title || "Untitled";
-  const dateStr = (item.properties?.date) ?? "";
+  const dateStr = item.properties?.date ?? "";
   return {
     id: item.id,
     title,
@@ -74,7 +77,7 @@ function itemToPost(item) {
     tags: parseTags(item.properties?.tags),
     published: parsePublished(item.properties?.published),
     excerpt: item.contentPreviewMd
-      ? stripMarkdown(item.contentPreviewMd).replace(/\.\.\.and \d+ more blocks?$/i, "").trim()
+      ? stripMarkdown(item.contentPreviewMd).replace(CRAFT_PREVIEW_SUFFIX_PATTERN, "").trim()
       : "",
   };
 }
