@@ -297,8 +297,8 @@
     <script>
       const location = window.location;
       const normalizedPath = location.pathname.replace(/^\/+/, "");
-      const normalizedSearch = location.search ? `?${location.search.slice(1).replace(/&/g, "~and~")}` : "";
-      const hashPath = normalizedPath ? `#/${normalizedPath}${normalizedSearch}${location.hash}` : "#/";
+      const normalizedSearch = location.search || "";
+      const hashPath = normalizedPath ? `#/${normalizedPath}${normalizedSearch}` : "#/";
       const target = `${location.protocol}//${location.hostname}${location.port ? `:${location.port}` : ""}/${hashPath}`;
       window.setTimeout(() => {
         location.replace(target);

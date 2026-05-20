@@ -13,7 +13,7 @@
             .map((segment) => segment.replace(/~and~/g, "&"))
             .join("?");
           const hashPath = decodedPath.startsWith("/") ? decodedPath : `/${decodedPath}`;
-          window.history.replaceState(null, "", `${location.pathname}#${hashPath}${location.hash}`);
+          window.history.replaceState(null, "", `${location.pathname}#${hashPath}`);
         }
       })(window.location);
     </script>

@@ -15,8 +15,14 @@ const NotFound = () => {
   const location = useLocation();
 
   useEffect(() => {
+    const previousTitle = document.title;
+
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
     document.title = "404 — aycarl.";
+
+    return () => {
+      document.title = previousTitle;
+    };
   }, [location.pathname]);
 
   return (
