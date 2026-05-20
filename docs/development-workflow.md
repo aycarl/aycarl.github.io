@@ -89,7 +89,8 @@ Deployment is fully automated through Cloudflare Pages' native GitHub integratio
 
 ### Routing & Redirection configuration
 The deployment relies on:
-- `public/_redirects` for native CDN-level fallback routing (`/* /index.html 200`) enabling standard client-side browser routing.
+- `wrangler.json` at the project root which specifies the static assets directory (`./dist`) and configures native SPA fallback handling (`"not_found_handling": "single-page-application"`) for Cloudflare's unified Workers/Pages asset model.
+- `public/_redirects` for native CDN-level fallback routing (`/* /index.html 200`) enabling standard client-side browser routing for classic Cloudflare Pages deploys.
 - `public/404.html` kept purely as a static styling hard-fallback for severe connection/DNS edge misses (no query redirect script).
 
 ## 5. Path aliases and imports
