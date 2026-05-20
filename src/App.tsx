@@ -1,8 +1,9 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HashRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import ErrorBoundary from "@/components/ErrorBoundary.tsx";
 import Index from "./pages/Index.tsx";
 import Writing from "./pages/Writing.tsx";
 import Archive from "./pages/Archive.tsx";
@@ -18,28 +19,30 @@ import NotFound from "./pages/NotFound.tsx";
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <HashRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/writing" element={<Writing />} />
-          <Route path="/writing/archive" element={<Archive />} />
-          <Route path="/writing/search" element={<SearchPage />} />
-          <Route path="/writing/tag/:tag" element={<Tag />} />
-          <Route path="/writing/:slug" element={<Post />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/projects/:slug" element={<Project />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/experience" element={<Experience />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </HashRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/writing" element={<Writing />} />
+            <Route path="/writing/archive" element={<Archive />} />
+            <Route path="/writing/search" element={<SearchPage />} />
+            <Route path="/writing/tag/:tag" element={<Tag />} />
+            <Route path="/writing/:slug" element={<Post />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:slug" element={<Project />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/experience" element={<Experience />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </ErrorBoundary>
 );
 
 export default App;
