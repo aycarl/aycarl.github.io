@@ -1,4 +1,4 @@
-# aycarl.github.io
+# aycarl.
 
 Portfolio site for [www.aycarl.com](https://www.aycarl.com), built as a React single-page application with Vite, TypeScript, React Router, Tailwind CSS, and a small shadcn/ui component layer.
 

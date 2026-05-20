@@ -16,8 +16,9 @@ From there:
 
 ## 2. Global providers
 
-`src/App.tsx` wraps the route tree with a few application-wide providers:
+`src/App.tsx` wraps the route tree with several application-wide providers and recovery shells:
 
+- `ErrorBoundary` from `src/components/ErrorBoundary.tsx` (catches runtime failures and yields structured error metrics)
 - `QueryClientProvider` from TanStack Query
 - `TooltipProvider`
 - two toast systems: the Radix-based toaster and Sonner
@@ -27,7 +28,14 @@ In practice, the most important one is TanStack Query. It handles browser-side c
 
 ## 3. Routing model
 
-This is a client-side routed application using React Router.
+This is a client-side routed application using React Router (`BrowserRouter`), augmented with **Cloudflare Pages Edge Functions** and native routing redirects.
+
+### Edge Redirection & SEO Injection
+1. **Fallback Routing:** A static file `public/_redirects` contains `/* /index.html 200`. Cloudflare CDN reads this and maps all deep browser entries (e.g. `/experience`) back to our main index bundle with a `200 OK` code to allow React Router to hydration-load the path smoothly.
+2. **Metadata Injection Functions:** Dynamic routes under `/writing/:slug` and `/projects/:slug` are intercepted at the edge by serverless script middleware located inside the `/functions` directory:
+   - `functions/writing/[slug].ts`
+   - `functions/projects/[slug].ts`
+   These functions make lightweight API queries to Craft, fetch post titles/excerpts, and rewrite the `<head>` of the static HTML shell on-the-fly using Cloudflare's C++ `HTMLRewriter`. This generates perfect Open Graph / Twitter card sharing previews without a full server stack.
 
 The route table currently defines these page groups:
 

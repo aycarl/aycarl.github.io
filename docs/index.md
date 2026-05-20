@@ -8,31 +8,33 @@ If you are new to the repository, read the documents in this order:
 2. [architecture.md](./architecture.md) for how the application boots, routes, and renders
 3. [content-and-maintenance.md](./content-and-maintenance.md) for where portfolio content lives and how to update it
 4. [development-workflow.md](./development-workflow.md) for linting, testing, deployment, and troubleshooting
+5. [Architectural Decision Records (ADRs)](./adr/0001-migrate-to-cloudflare-pages-for-edge-seo.md) for formal logs of design decisions
 
 ## What this application is
 
-This repository powers a personal portfolio site built as a React single-page application.
+This repository powers a personal portfolio site built as a React single-page application and hosted on **Cloudflare Pages**.
 
 The site has three main responsibilities:
 
 - present a strong landing page and personal brand
-- publish writing fetched from Craft through a public API
-- publish projects fetched from Craft through a public API
+- publish writing fetched from Craft through a public API (augmented by Edge Functions)
+- publish projects fetched from Craft through a public API (augmented by Edge Functions)
 - display experience, education, and skills content stored locally in the codebase
 
 ## Mental model
 
 The easiest way to understand the app is to follow the request path from top to bottom:
 
-1. Vite serves `index.html`
-2. `src/main.tsx` mounts the React app
-3. `src/App.tsx` wraps the app in providers and defines the routes
+1. A request comes in for a route (e.g. `/writing/my-post`) and is handled by **Cloudflare Pages Edge Functions** (under `/functions`). The function pre-fetches the post metadata from Craft, injects Open Graph SEO tags, and serves the `index.html` shell.
+2. `src/main.tsx` mounts the React app on the client.
+3. `src/App.tsx` wraps the app in providers, hooks up the `ErrorBoundary`, and defines the routes.
 4. each route renders a page component from `src/pages/`
 5. most pages render inside `SiteLayout`, which adds the shared header and footer
 6. pages either read local content from `src/content/` or remote writing and project data through `src/lib/craft.ts`
 
 ## Where to go for common tasks
 
+- Read technical decisions and history: [ADR 0001](./adr/0001-migrate-to-cloudflare-pages-for-edge-seo.md)
 - Add or edit a project: [content-and-maintenance.md](./content-and-maintenance.md)
 - Update biography, links, or navigation: [content-and-maintenance.md](./content-and-maintenance.md)
 - Understand why a writing page is failing: [development-workflow.md](./development-workflow.md)
