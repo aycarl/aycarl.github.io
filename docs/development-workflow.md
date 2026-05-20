@@ -15,15 +15,27 @@ This document explains how to run, validate, deploy, and troubleshoot the applic
 npm install
 ```
 
-### Start the dev server
+### Start the UI dev server
 
 ```bash
 npm run dev
 ```
 
-The local app runs on `http://localhost:8080`.
+The local UI server runs on `http://localhost:8080` (configured in `vite.config.ts`).
 
-That port comes from `vite.config.ts`.
+### Start the Edge Sandbox (To test Edge Functions & Redirects)
+
+Standard `npm run dev` serves dynamic files on the client but **will not execute the `/functions` Edge Middleware**. To test edge metadata injection and routing redirects locally:
+
+1. Build the static distribution:
+   ```bash
+   npm run build
+   ```
+2. Spin up the Wrangler pages server:
+   ```bash
+   npx wrangler pages dev dist --port 8080
+   ```
+This will mount your local `/functions` directory on a local V8 sandbox and route local visits through the edge code.
 
 ## 2. Available scripts
 
@@ -65,20 +77,20 @@ For maintainers, the practical rule is:
 
 ## 4. Deployment flow
 
-Deployment is defined in `.github/workflows/deploy.yml`.
+Hosting has migrated from GitHub Pages to **Cloudflare Pages**. 
 
-On every push to `main`, GitHub Actions:
+### Native Git Pipeline (Recommended)
+Deployment is fully automated through Cloudflare Pages' native GitHub integration:
+1. Every push to the `main` branch triggers an automated build on Cloudflare's servers.
+2. Cloudflare pulls the repository, runs `npm install`, and builds the static output using `npm run build`.
+3. Cloudflare automatically detects the `/functions` directory in the root and compiles these into V8 Workers.
+4. The site is instantly served globally across the Cloudflare CDN.
+5. Every pull request or branch push automatically creates an isolated preview URL (e.g. `branch-name.aycarl.pages.dev`).
 
-1. checks out the repository
-2. installs dependencies with npm
-3. builds the app with Vite
-4. uploads the `dist/` output
-5. deploys that build to GitHub Pages
-
-The public site also relies on:
-
-- `public/CNAME` for the custom domain
-- `public/404.html` for GitHub Pages fallback behavior
+### Routing & Redirection configuration
+The deployment relies on:
+- `public/_redirects` for native CDN-level fallback routing (`/* /index.html 200`) enabling standard client-side browser routing.
+- `public/404.html` kept purely as a static styling hard-fallback for severe connection/DNS edge misses (no query redirect script).
 
 ## 5. Path aliases and imports
 
