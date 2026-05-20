@@ -10,6 +10,7 @@ const exploreLinks = [
   { to: "/experience", label: "View experience", description: "Roles, education, and skills." },
   { to: "/about", label: "Read about", description: "Background, approach, and contact." },
 ];
+const exploreAccents = ["bg-sky", "bg-green", "bg-yellow", "bg-pink", "bg-orange"];
 
 const NotFound = () => {
   const location = useLocation();
@@ -69,7 +70,6 @@ const NotFound = () => {
 
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {exploreLinks.map((link, index) => {
-            const accents = ["bg-sky", "bg-green", "bg-yellow", "bg-pink", "bg-orange"];
             return (
               <Link
                 key={link.to}
@@ -77,7 +77,7 @@ const NotFound = () => {
                 className="group relative overflow-hidden rounded-3xl border border-border bg-card p-6 transition-colors hover:bg-secondary"
               >
                 <span
-                  className={`absolute -right-8 -top-8 h-24 w-24 rounded-full ${accents[index % accents.length]} opacity-65 blur-2xl transition-transform group-hover:scale-110`}
+                  className={`absolute -right-8 -top-8 h-24 w-24 rounded-full ${exploreAccents[index % exploreAccents.length]} opacity-65 blur-2xl transition-transform group-hover:scale-110`}
                   aria-hidden
                 />
                 <div className="relative">
