@@ -4,7 +4,9 @@ This file provides guidance when working with code in this repository.
 
 ## Repository Overview
 
-Personal portfolio site for www.aycarl.com built with **Astro** and **TailwindCSS**.
+Personal portfolio site for www.aycarl.com built as a **React single-page application** with **Vite**, **TypeScript**, **React Router**, **TanStack Query**, and **Tailwind CSS** (plus a generated shadcn/ui component layer). Writing and project content is fetched at runtime from a public Craft CMS API; experience, education, and skills content lives in local TypeScript modules.
+
+Hosted on **Cloudflare Pages** with edge functions for SEO metadata injection (see `docs/adr/0001-migrate-to-cloudflare-pages-for-edge-seo.md`).
 
 ## Development Workflow
 
@@ -18,116 +20,135 @@ Personal portfolio site for www.aycarl.com built with **Astro** and **TailwindCS
 # Install dependencies
 npm install
 
-# Start local dev server at http://localhost:4321
+# Start local dev server at http://localhost:8080 (port set in vite.config.ts)
 npm run dev
 
-# Build for production into /dist
+# Build for production into /dist (also generates dist/feed.xml via scripts/generate-rss.mjs)
 npm run build
+
+# Build in Vite development mode
+npm run build:dev
 
 # Preview production build locally
 npm run preview
+
+# Lint
+npm run lint
+
+# Run tests once / in watch mode
+npm run test
+npm run test:watch
+
+# Audit dependencies with the custom script
+npm run deps:audit
+```
+
+### Testing edge functions locally
+
+`npm run dev` does **not** execute the Cloudflare edge functions in `/functions`. To test them:
+
+```bash
+npm run build
+npx wrangler pages dev dist --port 8080
 ```
 
 ## Architecture
 
 ### Tech Stack
-- **Framework**: Astro (Static Site Generator)
-- **Styling**: TailwindCSS v4, light theme only
-- **Output**: static site built into `dist/`
+- **Framework**: React 18 + TypeScript, built with Vite 6
+- **Routing**: React Router v6 (`BrowserRouter`), route table in `src/App.tsx`
+- **Data fetching**: TanStack Query + Craft CMS API client in `src/lib/craft.ts`
+- **Styling**: Tailwind CSS v3, light theme only; design tokens in `src/index.css`
+- **UI primitives**: shadcn/ui (Radix) in `src/components/ui/` — only a small subset is used (input, sheet, toaster, sonner, tooltip)
+- **Testing**: Vitest + Testing Library (minimal coverage currently)
+- **Hosting**: Cloudflare Pages + edge functions
 
 ### Application Structure
 
 ```text
 src/
-├── assets/
-│   ├── docs/            # Legacy document assets not linked from current pages
-│   └── img/             # Local image assets
-├── components/
-│   ├── NewHeader.astro
-│   ├── NewFooter.astro
-│   ├── Hero.astro
-│   ├── Experience.astro
-│   ├── Education.astro
-│   ├── NewSkills.astro
-│   └── icons/           # SVG icon components
-├── layouts/
-│   └── BaseLayout.astro # Base HTML template for all pages
-├── pages/
-│   ├── index.astro      # Home page with portfolio sections
-│   ├── about.astro      # Static placeholder page
-│   ├── projects.astro   # Static placeholder page
-│   ├── blog.astro       # Placeholder page for future writing
-│   └── docs.astro       # Placeholder page for future project documentation
-└── styles/
-    └── global.css       # Tailwind import and global resets
+├── main.tsx                 # Entry point; mounts the React app
+├── App.tsx                  # Providers + route table
+├── pages/                   # Route-level screens (Index, Writing, Post, Projects, ...)
+├── components/              # SiteLayout, SiteHeader, SiteFooter, Markdown, ErrorBoundary, ...
+├── components/ui/           # shadcn/ui generated primitives (mostly unused scaffolding)
+├── content/                 # Local data: experience.ts, education.ts, skills.ts
+├── lib/                     # craft.ts (Craft API client), utils.ts
+├── hooks/                   # Shared hooks
+├── test/                    # Vitest setup and example test
+└── index.css                # Tailwind layers, design tokens, prose styles, motion utilities
+functions/
+├── writing/[slug].ts        # Edge function: injects OG/SEO meta for /writing/:slug
+└── projects/[slug].ts       # Edge function: injects OG/SEO meta for /projects/:slug
+scripts/
+├── generate-rss.mjs         # Runs during npm run build; writes dist/feed.xml
+└── audit-deps.mjs           # npm run deps:audit
 public/
+├── 404.html                 # Static hard fallback (no redirect logic)
+├── CNAME                    # GitHub Pages leftover; harmless, domain is managed in Cloudflare
 ├── favicon.ico
 └── robots.txt
+wrangler.json                # Cloudflare assets config + SPA fallback handling
 ```
 
 ### Routing
 
-Astro uses file-based routing:
-- `src/pages/index.astro` → `/`
-- `src/pages/about.astro` → `/about`
-- `src/pages/projects.astro` → `/projects`
-- `src/pages/blog.astro` → `/blog`
-- `src/pages/docs.astro` → `/docs`
+Routes are defined in `src/App.tsx`:
 
-### Component Patterns
+- `/` → `src/pages/Index.tsx`
+- `/writing` → `Writing.tsx`
+- `/writing/archive` → `Archive.tsx`
+- `/writing/search` → `SearchPage.tsx`
+- `/writing/tag/:tag` → `Tag.tsx`
+- `/writing/:slug` → `Post.tsx`
+- `/projects` → `Projects.tsx`
+- `/projects/:slug` → `Project.tsx`
+- `/about` → `About.tsx`
+- `/experience` → `Experience.tsx`
+- `*` → `NotFound.tsx` (keep custom routes above the catch-all)
 
-- **Astro components**: all active UI components use `.astro`
-- **Mostly static rendering**: no client-side framework runtime in active pages
-- **Props-based layout**: page metadata flows through `BaseLayout`
+SPA fallback on Cloudflare is handled by `wrangler.json` (`"not_found_handling": "single-page-application"`). There is no `_redirects` file.
 
-### Styling
+### Content Model
 
-The site uses a **single light theme**. Tailwind utility classes live directly in component markup, and global resets are limited to `src/styles/global.css`.
+Two separate content layers:
 
-## Content Roadmap
+1. **Local content** (`src/content/`): experience, education, skills — edited directly in the repo.
+2. **Remote content** (Craft CMS via `src/lib/craft.ts`): writing posts and projects, fetched client-side at runtime. Slugs are derived from titles; unpublished items are filtered out.
 
-`/blog` and `/docs` are currently placeholders. The likely next step is Astro Content Collections:
+If writing or project pages break, check `src/lib/craft.ts` and Craft API availability before touching page components.
 
-```text
-src/content/
-├── blog/
-└── docs/
-```
+### Path Alias
 
-When content is added, pair those collections with matching dynamic routes such as `src/pages/blog/[...slug].astro` and `src/pages/docs/[...slug].astro`.
-
-## Key Files
-
-- **astro.config.mjs**: site URL, output directory, Tailwind Vite plugin
-- **package.json**: npm scripts and current dependencies
-- **src/layouts/BaseLayout.astro**: shared HTML shell and page metadata
-- **src/styles/global.css**: Tailwind import and minimal global styles
-- **src/components/NewHeader.astro**: top navigation, blog/docs links, contact email
-- **src/components/NewFooter.astro**: footer navigation and social links
+`@` maps to `src/` — defined in both `vite.config.ts` and `tsconfig.json`. If `@/` imports break, check both files.
 
 ## Common Tasks
 
 ### Adding a new page
-1. Create `src/pages/my-page.astro`
-2. Wrap the page in `<BaseLayout>`
-3. Add navigation if the page should be discoverable
-
-### Preparing blog/docs content
-1. Add `src/content/blog/` or `src/content/docs/`
-2. Add matching dynamic routes
-3. Replace placeholder copy in `src/pages/blog.astro` and `src/pages/docs.astro`
+1. Create a component in `src/pages/`
+2. Wrap it in `SiteLayout` unless it deliberately needs a different shell
+3. Register the route in `src/App.tsx` (above the `*` catch-all)
+4. Add navigation links in `src/components/SiteHeader.tsx` and `src/components/SiteFooter.tsx` if discoverable; check both desktop and mobile menus
 
 ### Modifying styles
-- Add Tailwind classes directly in component markup
-- Keep `src/styles/global.css` minimal
+- Add Tailwind classes directly in component JSX
+- Use `src/index.css` only for design tokens, shared prose rules (`.prose-aycarl`), reusable helpers (`.wordmark`, `.blob`), or motion utilities
 - Do not introduce `dark:` variants unless the theme model changes intentionally
 
 ### Updating contact or social links
-- Edit `src/components/NewHeader.astro` and `src/components/NewFooter.astro`
-- Prefer external resume/profile URLs over committed downloadable files
+- Edit `src/components/SiteHeader.tsx` and `src/components/SiteFooter.tsx`
+- The About page (`src/pages/About.tsx`) also carries contact buttons
 
 ## Deployment Notes
 
-Deployment is handled through GitHub Actions. The workflow at `.github/workflows/astro.yml` runs on every push to `main`, builds the site, and publishes it directly to GitHub Pages using `actions/upload-pages-artifact` + `actions/deploy-pages`. No `gh-pages` branch, `gh-pages` npm package, or manual local publish step is involved.
+Deployment uses **Cloudflare Pages' native GitHub integration** — there is no GitHub Actions deploy workflow:
 
-The custom domain is wired up through the `CNAME` file in `public/`.
+1. Every push to `main` triggers a build on Cloudflare (npm install + `npm run build`)
+2. Cloudflare compiles the `/functions` directory into edge workers automatically
+3. Branch pushes and PRs get isolated preview URLs (`<branch>.aycarl.pages.dev`)
+
+`wrangler.json` configures the static asset directory (`./dist`) and SPA fallback. The custom domain is managed in the Cloudflare dashboard.
+
+## Detailed Documentation
+
+The `docs/` directory holds the maintainer guides — start with `docs/index.md`, then `docs/architecture.md`, `docs/content-and-maintenance.md`, and `docs/development-workflow.md`. Architectural decisions are logged in `docs/adr/`.

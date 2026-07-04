@@ -42,7 +42,7 @@ This will mount your local `/functions` directory on a local V8 sandbox and rout
 The main scripts in `package.json` are:
 
 - `npm run dev` starts Vite in development mode
-- `npm run build` creates a production build in `dist/`
+- `npm run build` creates a production build in `dist/` and then generates the RSS feed (`dist/feed.xml`) via `scripts/generate-rss.mjs`
 - `npm run build:dev` builds using Vite's development mode
 - `npm run preview` serves the production build locally
 - `npm run lint` runs ESLint
@@ -89,8 +89,7 @@ Deployment is fully automated through Cloudflare Pages' native GitHub integratio
 
 ### Routing & Redirection configuration
 The deployment relies on:
-- `wrangler.json` at the project root which specifies the static assets directory (`./dist`) and configures native SPA fallback handling (`"not_found_handling": "single-page-application"`) for Cloudflare's unified Workers/Pages asset model.
-- `public/_redirects` for native CDN-level fallback routing (`/* /index.html 200`) enabling standard client-side browser routing for classic Cloudflare Pages deploys.
+- `wrangler.json` at the project root which specifies the static assets directory (`./dist`) and configures native SPA fallback handling (`"not_found_handling": "single-page-application"`) for Cloudflare's unified Workers/Pages asset model. This is the sole SPA fallback mechanism — there is no `_redirects` file.
 - `public/404.html` kept purely as a static styling hard-fallback for severe connection/DNS edge misses (no query redirect script).
 
 ## 5. Path aliases and imports
@@ -153,7 +152,7 @@ Check whether the issue belongs in:
 - `src/index.css`
 - `tailwind.config.ts`
 
-### The app builds locally but behaves differently on GitHub Pages
+### The app builds locally but behaves differently on Cloudflare Pages
 
 Check for:
 
