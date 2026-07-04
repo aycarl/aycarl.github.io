@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { Search } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
+import { PageHero } from "@/components/PageHero";
 import { fetchPosts } from "@/lib/craft";
 import { Input } from "@/components/ui/input";
 
@@ -40,13 +41,10 @@ const Archive = () => {
 
   return (
     <SiteLayout>
-      <section className="container py-16 md:py-24 max-w-4xl">
+      <section className="container py-16 md:py-24">
         <div className="flex items-baseline justify-between gap-4 flex-wrap">
           <div>
-            <p className="text-sm uppercase tracking-widest text-foreground/60 mb-3">Archive</p>
-            <h1 className="wordmark text-5xl md:text-7xl">
-              Everything written<span className="text-sky">.</span>
-            </h1>
+            <PageHero eyebrow="Archive" title="Everything written" accent="sky" size="md" />
           </div>
           <Link to="/writing/search" className="text-sm text-foreground/65 hover:text-foreground underline underline-offset-4">
             Full-text search →

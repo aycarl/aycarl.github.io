@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { SiteLayout } from "@/components/SiteLayout";
 import { HeroBlobField } from "@/components/Blob";
+import { PostListItem } from "@/components/PostListItem";
 import { fetchPosts, fetchProjects } from "@/lib/craft";
 import { ArrowUpRight } from "lucide-react";
 
@@ -12,9 +13,6 @@ const accentDot: Record<string, string> = {
   pink: "bg-pink",
   orange: "bg-orange",
 };
-
-const formatDate = (d: string) =>
-  new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
 
 const Index = () => {
   const { data: allPosts } = useQuery({ queryKey: ["posts"], queryFn: fetchPosts });
@@ -76,27 +74,7 @@ const Index = () => {
             <li className="py-8 text-muted-foreground">No published posts yet.</li>
           )}
           {posts.map((p) => (
-            <li key={p.id}>
-              <Link to={`/writing/${p.slug}`} className="group grid grid-cols-12 gap-4 py-6 items-baseline">
-                <div className="col-span-12 md:col-span-3 text-sm text-muted-foreground tabular-nums">
-                  {p.date && formatDate(p.date)} · {p.readingTime} min
-                </div>
-                <div className="col-span-12 md:col-span-9">
-                  <h3 className="text-2xl md:text-3xl font-light tracking-tight group-hover:text-foreground transition-colors">
-                    {p.title}
-                  </h3>
-                  {p.excerpt && <p className="mt-2 text-foreground/70 line-clamp-2">{p.excerpt}</p>}
-                  <div className="mt-3 flex gap-2">
-                    {p.tags.slice(0, 3).map((t, i) => (
-                      <span key={t} className="inline-flex items-center gap-1.5 text-xs text-foreground/60">
-                        <span className={`h-1.5 w-1.5 rounded-full ${["bg-sky","bg-green","bg-yellow","bg-pink","bg-orange"][i % 5]}`} />
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </Link>
-            </li>
+            <PostListItem key={p.id} post={p} />
           ))}
         </ul>
       </section>

@@ -1,4 +1,5 @@
 import { SiteLayout } from "@/components/SiteLayout";
+import { PageHero } from "@/components/PageHero";
 import { experiences } from "@/content/experience";
 import { education } from "@/content/education";
 import { skillCategories } from "@/content/skills";
@@ -22,13 +23,12 @@ const Experience = () => {
     <SiteLayout>
       {/* Header */}
       <section className="container py-16 md:py-24">
-        <p className="text-sm uppercase tracking-widest text-foreground/60 mb-4">Career</p>
-        <h1 className="wordmark text-6xl md:text-8xl mb-4">
-          Work experience<span className="text-pink">.</span>
-        </h1>
-        <p className="max-w-2xl text-lg text-foreground/70">
-          A timeline of roles, projects, and growth across design, engineering, and leadership.
-        </p>
+        <PageHero
+          eyebrow="Career"
+          title="Work experience"
+          accent="pink"
+          description="A timeline of roles, projects, and growth across design, engineering, and leadership."
+        />
       </section>
 
       {/* Experience Section */}

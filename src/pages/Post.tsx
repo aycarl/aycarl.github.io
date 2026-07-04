@@ -61,12 +61,12 @@ const Post = () => {
       <article className="container py-16 md:py-24 max-w-3xl">
         <Link
           to="/writing"
-          className="inline-flex items-center gap-2 text-sm text-foreground/65 hover:text-foreground transition-colors mb-12"
+          className="inline-flex items-center gap-2 text-sm text-foreground/65 hover:text-foreground transition-colors mb-10"
         >
           <ArrowLeft className="h-4 w-4" /> All writing
         </Link>
 
-        <header className="mb-12">
+        <header className="mb-10">
           <div className="text-sm text-muted-foreground mb-4 tabular-nums">
             {post.date && formatDate(post.date)} · {post.readingTime} min read
           </div>
