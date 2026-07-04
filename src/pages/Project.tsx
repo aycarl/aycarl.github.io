@@ -65,7 +65,7 @@ const Project = () => {
             <span className={`h-2 w-2 rounded-full ${accentDot[project.accent]}`} />
             {project.year} · {project.role}
           </div>
-          <h1 className="wordmark text-5xl md:text-6xl mb-4">{project.title}</h1>
+          <h1 className="wordmark text-4xl md:text-6xl mb-4 leading-[1.05]">{project.title}</h1>
           <p className="text-xl text-foreground/70">{project.summary}</p>
           <div className="mt-6 flex flex-wrap gap-2">
             {project.stack.map((s) => (

@@ -2,13 +2,10 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowRight, Search } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
+import { PageHero } from "@/components/PageHero";
+import { PostListItem } from "@/components/PostListItem";
 import { fetchPosts } from "@/lib/craft";
 import { PostListSkeleton } from "@/components/PostListSkeleton";
-
-const formatDate = (d: string) =>
-  new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
-
-const dotColors = ["bg-sky", "bg-green", "bg-yellow", "bg-pink", "bg-orange"];
 
 const Writing = () => {
   const { data: posts, isLoading, error } = useQuery({ queryKey: ["posts"], queryFn: fetchPosts });
@@ -16,14 +13,13 @@ const Writing = () => {
 
   return (
     <SiteLayout>
-      <section className="container py-16 md:py-24 max-w-4xl">
-        <p className="text-sm uppercase tracking-widest text-foreground/60 mb-4">Writing</p>
-        <h1 className="wordmark text-6xl md:text-8xl mb-6">
-          Notes &amp; essays<span className="text-pink">.</span>
-        </h1>
-        <p className="max-w-2xl text-lg text-foreground/70">
-          Working notes on systems design, infrastructure, and the craft of being a solutions architect.
-        </p>
+      <section className="container py-16 md:py-24">
+        <PageHero
+          eyebrow="Writing"
+          title="Notes & essays"
+          accent="pink"
+          description="Working notes on systems design, infrastructure, and the craft of being a solutions architect."
+        />
 
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <Link
@@ -54,37 +50,7 @@ const Writing = () => {
 
           <ul className="divide-y divide-border">
             {recent.map((p) => (
-              <li key={p.id}>
-                <Link to={`/writing/${p.slug}`} className="group grid grid-cols-12 gap-6 py-8 items-baseline">
-                  <div className="col-span-12 md:col-span-3 text-sm text-muted-foreground tabular-nums">
-                    {p.date && formatDate(p.date)}
-                    <div className="text-xs text-muted-foreground/70 mt-1">{p.readingTime} min read</div>
-                  </div>
-                  <div className="col-span-12 md:col-span-9">
-                    <h3 className="text-2xl md:text-3xl font-light tracking-tight group-hover:text-foreground/70 transition-colors">
-                      {p.title}
-                    </h3>
-                    {p.excerpt && (
-                      <p className="mt-3 text-foreground/65 leading-relaxed line-clamp-2">{p.excerpt}</p>
-                    )}
-                    {p.tags.length > 0 && (
-                      <div className="mt-4 flex flex-wrap gap-3">
-                        {p.tags.slice(0, 4).map((t, i) => (
-                          <Link
-                            key={t}
-                            to={`/writing/tag/${encodeURIComponent(t)}`}
-                            onClick={(e) => e.stopPropagation()}
-                            className="inline-flex items-center gap-1.5 text-xs text-foreground/55 hover:text-foreground transition-colors"
-                          >
-                            <span className={`h-1.5 w-1.5 rounded-full ${dotColors[i % 5]}`} />
-                            {t}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </Link>
-              </li>
+              <PostListItem key={p.id} post={p} />
             ))}
           </ul>
 

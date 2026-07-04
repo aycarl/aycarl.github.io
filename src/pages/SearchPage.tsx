@@ -56,7 +56,7 @@ const SearchPage = () => {
 
   return (
     <SiteLayout>
-      <section className="container py-16 md:py-24 max-w-4xl">
+      <section className="container py-16 md:py-24">
         <Link to="/writing" className="inline-flex items-center gap-2 text-sm text-foreground/65 hover:text-foreground mb-10">
           <ArrowLeft className="h-4 w-4" /> All writing
         </Link>

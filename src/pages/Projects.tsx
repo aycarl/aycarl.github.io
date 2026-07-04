@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { SiteLayout } from "@/components/SiteLayout";
+import { PageHero } from "@/components/PageHero";
 import { fetchProjects } from "@/lib/craft";
 
 const accentDot: Record<string, string> = {
@@ -17,13 +18,12 @@ const Projects = () => {
   return (
     <SiteLayout>
       <section className="container py-16 md:py-24">
-        <p className="text-sm uppercase tracking-widest text-foreground/60 mb-4">Projects</p>
-        <h1 className="wordmark text-6xl md:text-8xl mb-4">
-          Things I've built<span className="text-green">.</span>
-        </h1>
-        <p className="max-w-2xl text-lg text-foreground/70">
-          Selected work across systems design, infrastructure, and platform engineering.
-        </p>
+        <PageHero
+          eyebrow="Projects"
+          title="Things I've built"
+          accent="green"
+          description="Selected work across systems design, infrastructure, and platform engineering."
+        />
 
         {isLoading && <p className="mt-16 text-muted-foreground">Loading projects...</p>}
         {error && <p className="mt-16 text-destructive">Couldn't load projects. Try again shortly.</p>}
