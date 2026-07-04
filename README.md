@@ -1,8 +1,8 @@
 # aycarl.
 
-Portfolio site for [www.aycarl.com](https://www.aycarl.com), built as a React single-page application with Vite, TypeScript, React Router, Tailwind CSS, and a small shadcn/ui component layer.
+Portfolio site for [www.aycarl.com](https://www.aycarl.com), built as a React single-page application with Vite, TypeScript, React Router, Tailwind CSS, and a small shadcn/ui component layer, hosted on Cloudflare Pages.
 
-This repository is no longer an Astro site. The current application is a client-rendered portfolio with four main content areas:
+The application is a client-rendered portfolio with four main content areas:
 
 - a home page that highlights writing and selected projects
 - a writing section backed by the public Craft API
@@ -12,12 +12,12 @@ This repository is no longer an Astro site. The current application is a client-
 ## Stack at a glance
 
 - React 18 + TypeScript
-- Vite 5 for local development and production builds
+- Vite 6 for local development and production builds
 - React Router for route handling
 - TanStack Query for remote writing data fetching and caching
 - Tailwind CSS for styling, plus a small generated shadcn/ui surface
 - Vitest + Testing Library setup for tests
-- GitHub Actions + GitHub Pages for deployment
+- Cloudflare Pages for hosting, with edge functions for SEO metadata injection
 
 ## Quick start
 
@@ -38,11 +38,13 @@ The Vite dev server runs on `http://localhost:8080`.
 ### Other useful scripts
 
 ```bash
-npm run build      # production build into dist/
+npm run build      # production build into dist/ (also generates dist/feed.xml RSS feed)
+npm run build:dev  # build using Vite's development mode
 npm run preview    # serve the production build locally
 npm run lint       # run ESLint
 npm run test       # run Vitest once
 npm run test:watch # run Vitest in watch mode
+npm run deps:audit # run the custom dependency audit script
 ```
 
 ## How the app is organized
@@ -59,12 +61,20 @@ src/
 ├── hooks/                   # Shared hooks
 ├── test/                    # Test setup and examples
 └── index.css                # Tailwind layers, design tokens, prose styling, motion utilities
+functions/
+├── writing/[slug].ts        # Edge function: SEO metadata for /writing/:slug
+└── projects/[slug].ts       # Edge function: SEO metadata for /projects/:slug
+scripts/
+├── generate-rss.mjs         # RSS feed generation (runs during npm run build)
+└── audit-deps.mjs           # Dependency audit script
 public/
-├── 404.html                 # Static fallback for GitHub Pages
-├── CNAME                    # Custom domain mapping
+├── 404.html                 # Static hard fallback page
+├── CNAME                    # GitHub Pages leftover; domain is managed in Cloudflare
 └── robots.txt
 docs/
-└── index.md                 # Documentation entry point
+├── index.md                 # Documentation entry point
+└── adr/                     # Architectural decision records
+wrangler.json                # Cloudflare assets config + SPA fallback handling
 ```
 
 ## Route summary
@@ -103,16 +113,18 @@ Projects are fetched from Craft through `src/lib/craft.ts`.
 
 ## Deployment
 
-Deployment is handled by GitHub Actions in `.github/workflows/deploy.yml`.
+Deployment is handled by Cloudflare Pages' native GitHub integration — there is no GitHub Actions deploy workflow.
 
-On every push to `main`, the workflow:
+On every push to `main`, Cloudflare:
 
-1. installs dependencies with npm
-2. builds the site with Vite
-3. uploads `dist/`
-4. deploys the build to GitHub Pages
+1. pulls the repository and installs dependencies with npm
+2. builds the site with `npm run build`
+3. compiles the `/functions` directory into edge workers
+4. serves the result globally across the Cloudflare CDN
 
-No manual publish step or `gh-pages` branch workflow is required.
+Branch pushes and pull requests automatically get isolated preview URLs (e.g. `branch-name.aycarl.pages.dev`). SPA route fallback is configured in `wrangler.json` (`"not_found_handling": "single-page-application"`).
+
+To test edge functions locally, build first and then run `npx wrangler pages dev dist --port 8080` — the standard dev server does not execute them.
 
 ## Documentation
 

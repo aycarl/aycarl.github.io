@@ -31,7 +31,7 @@ In practice, the most important one is TanStack Query. It handles browser-side c
 This is a client-side routed application using React Router (`BrowserRouter`), augmented with **Cloudflare Pages Edge Functions** and native routing redirects.
 
 ### Edge Redirection & SEO Injection
-1. **Fallback Routing:** A static file `public/_redirects` contains `/* /index.html 200`. Cloudflare CDN reads this and maps all deep browser entries (e.g. `/experience`) back to our main index bundle with a `200 OK` code to allow React Router to hydration-load the path smoothly.
+1. **Fallback Routing:** `wrangler.json` sets `"not_found_handling": "single-page-application"`, which maps all deep browser entries (e.g. `/experience`) back to our main index bundle with a `200 OK` code so React Router can hydration-load the path smoothly. There is no `_redirects` file.
 2. **Metadata Injection Functions:** Dynamic routes under `/writing/:slug` and `/projects/:slug` are intercepted at the edge by serverless script middleware located inside the `/functions` directory:
    - `functions/writing/[slug].ts`
    - `functions/projects/[slug].ts`
@@ -117,12 +117,7 @@ That pattern is visible in `Writing.tsx`, `Post.tsx`, `Archive.tsx`, `Tag.tsx`, 
 
 ### Markdown-backed pages
 
-Two areas render Markdown:
-
-- project detail pages render local Markdown stored in `src/content/projects.ts`
-- writing detail pages render Markdown assembled from Craft blocks
-
-Both writing and projects now assemble detail page markdown from Craft blocks.
+Two areas render Markdown: writing detail pages and project detail pages. Both assemble their markdown from Craft blocks fetched through `src/lib/craft.ts`.
 
 Both use `src/components/Markdown.tsx`, which wraps `react-markdown` with GitHub Flavored Markdown support and syntax highlighting.
 
