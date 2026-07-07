@@ -46,7 +46,7 @@ export const SiteFooter = () => {
             <a href="https://www.linkedin.com/in/aycarl" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-foreground transition-colors">
               <BrandLinkedin className="h-5 w-5" />
             </a>
-            <a href="mailto:hello@aycarl.com" aria-label="Email" className="hover:text-foreground transition-colors">
+            <a href="mailto:aycarl@hotmail.com" aria-label="Email" className="hover:text-foreground transition-colors">
               <Mail className="h-5 w-5" />
             </a>
           </div>

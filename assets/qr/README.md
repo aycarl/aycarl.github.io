@@ -1,6 +1,6 @@
 # QR code assets
 
-QR codes pointing to <https://www.aycarl.com/links> for print use (CV top corner,
+QR codes pointing to <https://aycarl.com/links> for print use (CV top corner,
 business cards, etc.). Not part of the site build — nothing in `/assets` is deployed.
 
 - `aycarl-links-qr.svg` — vector, preferred for print/design tools (scales losslessly)
@@ -13,8 +13,8 @@ larger** and keep the white quiet zone around the code intact.
 Regenerate with:
 
 ```bash
-npx --yes qrcode -e H -q 4 -t svg -o assets/qr/aycarl-links-qr.svg "https://www.aycarl.com/links"
-npx --yes qrcode -e H -q 4 -w 1200 -t png -o assets/qr/aycarl-links-qr.png "https://www.aycarl.com/links"
+npx --yes qrcode -e H -q 4 -t svg -o assets/qr/aycarl-links-qr.svg "https://aycarl.com/links"
+npx --yes qrcode -e H -q 4 -w 1200 -t png -o assets/qr/aycarl-links-qr.png "https://aycarl.com/links"
 ```
 
 The URL is printed on physical media — never repoint `/links` or remove the route

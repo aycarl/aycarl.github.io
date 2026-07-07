@@ -1,6 +1,6 @@
 # aycarl.
 
-Portfolio site for [www.aycarl.com](https://www.aycarl.com), built as a React single-page application with Vite, TypeScript, React Router, Tailwind CSS, and a small shadcn/ui component layer, hosted on Cloudflare Pages.
+Portfolio site for [aycarl.com](https://aycarl.com), built as a React single-page application with Vite, TypeScript, React Router, Tailwind CSS, and a small shadcn/ui component layer, hosted on Cloudflare Pages.
 
 The application is a client-rendered portfolio with four main content areas:
 

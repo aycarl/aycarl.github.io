@@ -5,5 +5,5 @@ export const CV_URL = "https://drive.google.com/file/d/14Ofu9R2PmH9hDx0KzmEXxMiQ
 
 export const GITHUB_URL = "https://github.com/aycarl";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/aycarl";
-export const CONTACT_EMAIL = "hello@aycarl.com";
-export const SITE_URL = "https://www.aycarl.com";
+export const CONTACT_EMAIL = "aycarl@hotmail.com";
+export const SITE_URL = "https://aycarl.com";

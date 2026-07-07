@@ -126,7 +126,7 @@ class ErrorBoundary extends Component<Props, State> {
                   <h3 className="mt-3 text-2xl font-light tracking-tight">Report Bug</h3>
                   <p className="mt-2 text-sm text-foreground/68">Send an email with the stack trace details above so the issue can be resolved.</p>
                   <a
-                    href="mailto:hello@aycarl.com?subject=aycarl.com%20Error%20Report"
+                    href="mailto:aycarl@hotmail.com?subject=aycarl.com%20Error%20Report"
                     className="mt-6 inline-flex items-center gap-2 text-sm underline underline-offset-4"
                   >
                     Send report <ArrowUpRight className="h-4 w-4" />

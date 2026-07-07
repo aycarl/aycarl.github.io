@@ -4,7 +4,7 @@ This file provides guidance when working with code in this repository.
 
 ## Repository Overview
 
-Personal portfolio site for www.aycarl.com built as a **React single-page application** with **Vite**, **TypeScript**, **React Router**, **TanStack Query**, and **Tailwind CSS** (plus a generated shadcn/ui component layer). Writing and project content is fetched at runtime from a public Craft CMS API; experience, education, and skills content lives in local TypeScript modules.
+Personal portfolio site for aycarl.com built as a **React single-page application** with **Vite**, **TypeScript**, **React Router**, **TanStack Query**, and **Tailwind CSS** (plus a generated shadcn/ui component layer). Writing and project content is fetched at runtime from a public Craft CMS API; experience, education, and skills content lives in local TypeScript modules.
 
 Hosted on **Cloudflare Pages** with edge functions for SEO metadata injection (see `docs/adr/0001-migrate-to-cloudflare-pages-for-edge-seo.md`).
 

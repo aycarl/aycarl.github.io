@@ -19,7 +19,7 @@ import path from "node:path";
 const BASE = "https://connect.craft.do/links/4GBve1yOGzU/api/v1";
 const POSTS_COLLECTION_ID = "769CD161-FC8A-4B52-83AA-36A192AF9FCA";
 
-const SITE_URL = "https://www.aycarl.com";
+const SITE_URL = "https://aycarl.com";
 const FEED_PATH = path.resolve(process.cwd(), "dist", "feed.xml");
 
 // Craft's content-preview API appends this suffix when it truncates text.
