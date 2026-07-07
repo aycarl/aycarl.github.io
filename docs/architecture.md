@@ -35,6 +35,7 @@ This is a client-side routed application using React Router (`BrowserRouter`), a
 2. **Metadata Injection Functions:** Dynamic routes under `/writing/:slug` and `/projects/:slug` are intercepted at the edge by serverless script middleware located inside the `/functions` directory:
    - `functions/writing/[slug].ts`
    - `functions/projects/[slug].ts`
+   In addition, `functions/cv.ts` issues an edge 302 from `/cv` to the externally hosted CV (target URL in `src/content/links.ts`).
    These functions make lightweight API queries to Craft, fetch post titles/excerpts, and rewrite the `<head>` of the static HTML shell on-the-fly using Cloudflare's C++ `HTMLRewriter`. This generates perfect Open Graph / Twitter card sharing previews without a full server stack.
 
 The route table currently defines these page groups:
@@ -46,6 +47,8 @@ The route table currently defines these page groups:
 - `/projects/:slug` renders `src/pages/Project.tsx`
 - `/about` renders `src/pages/About.tsx`
 - `/experience` renders `src/pages/Experience.tsx`
+- `/links` renders `src/pages/Links.tsx` — linktree-style contact hub; this is the printed QR code destination, so keep the route stable
+- `/cv` renders `src/pages/CvRedirect.tsx` as a dev-only fallback; in production `functions/cv.ts` issues a 302 to the Google Drive CV (URL lives in `src/content/links.ts`)
 
 ### Writing pages
 
