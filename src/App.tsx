@@ -14,6 +14,8 @@ import Projects from "./pages/Projects.tsx";
 import Project from "./pages/Project.tsx";
 import About from "./pages/About.tsx";
 import Experience from "./pages/Experience.tsx";
+import Links from "./pages/Links.tsx";
+import CvRedirect from "./pages/CvRedirect.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -36,6 +38,8 @@ const App = () => (
             <Route path="/projects/:slug" element={<Project />} />
             <Route path="/about" element={<About />} />
             <Route path="/experience" element={<Experience />} />
+            <Route path="/links" element={<Links />} />
+            <Route path="/cv" element={<CvRedirect />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

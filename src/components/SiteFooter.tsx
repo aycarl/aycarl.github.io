@@ -10,6 +10,7 @@ const navLinks = [
   { to: "/projects", label: "Projects" },
   { to: "/experience", label: "Experience" },
   { to: "/about", label: "About" },
+  { to: "/links", label: "Links" },
 ];
 
 export const SiteFooter = () => {

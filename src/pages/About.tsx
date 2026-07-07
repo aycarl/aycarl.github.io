@@ -1,7 +1,8 @@
 import { SiteLayout } from "@/components/SiteLayout";
 import { Blob } from "@/components/Blob";
-import { Mail } from "lucide-react";
+import { FileText, Mail } from "lucide-react";
 import { BrandGithub, BrandLinkedin } from "@/components/icons/BrandIcons";
+import { CONTACT_EMAIL, GITHUB_URL, LINKEDIN_URL } from "@/content/links";
 
 const About = () => {
   return (
@@ -14,31 +15,29 @@ const About = () => {
           </h1>
           <div className="space-y-5 text-lg text-foreground/80">
             <p>
-              I'm a full-stack software engineer and solutions architect. I spend my time on the
-              boundary between product and infrastructure — designing systems that earn
-              their complexity and shipping the smallest version that proves the idea.
+              I'm a full-stack software engineer and solutions architect working on the boundary
+              between product and infrastructure — designing systems that earn their complexity,
+              shipping the smallest version that proves the idea, and helping organizations
+              navigate cloud, data, and platform decisions.
             </p>
             <p>
-              These days I focus on three things: <strong>systems design</strong> for
-              high-throughput services, <strong>infrastructure</strong> as a product the
-              rest of the team actually wants to use, and <strong>solutions architecture</strong>{" "}
-              for organizations navigating cloud, data, and platform decisions.
-            </p>
-            <p>
-              Outside of work, and in no particular order, I practice Japanese and Zulu on Duolingo, 
-              walk, play chess, experience the Tao, and read more than I write. 
+              Outside of work, and in no particular order, I practice Japanese and Zulu on Duolingo,
+              walk, play chess, experience the Tao, and read more than I write.
               The colored dot after the wordmark is on purpose — small punctuation, simple, straight-forward.
             </p>
           </div>
 
           <div className="mt-10 flex flex-wrap gap-4">
-            <a href="mailto:hello@aycarl.com" className="inline-flex items-center gap-2 rounded-full bg-foreground text-background px-6 py-3 text-sm">
+            <a href={`mailto:${CONTACT_EMAIL}`} className="inline-flex items-center gap-2 rounded-full bg-foreground text-background px-6 py-3 text-sm">
               <Mail className="h-4 w-4" /> Get in touch
             </a>
-            <a href="https://github.com/aycarl" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm hover:bg-secondary transition-colors">
+            <a href="/cv" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm hover:bg-secondary transition-colors">
+              <FileText className="h-4 w-4" /> Download CV
+            </a>
+            <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm hover:bg-secondary transition-colors">
               <BrandGithub className="h-4 w-4" /> GitHub
             </a>
-            <a href="https://www.linkedin.com/in/aycarl" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm hover:bg-secondary transition-colors">
+            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm hover:bg-secondary transition-colors">
               <BrandLinkedin className="h-4 w-4" /> LinkedIn
             </a>
           </div>
@@ -50,14 +49,6 @@ const About = () => {
             <Blob color="yellow" className="right-[20%] -bottom-[5%] h-[180px] w-[180px]" drift={3} />
             <Blob color="pink" className="-left-[5%] bottom-[10%] h-[200px] w-[200px]" drift={1} />
             <Blob color="orange" className="-right-[5%] top-[5%] h-[160px] w-[160px]" drift={2} />
-          </div>
-          <div className="mt-6 rounded-2xl border border-border p-5 bg-card">
-            <h3 className="text-sm uppercase tracking-widest text-foreground/60 mb-3">Currently</h3>
-            <ul className="space-y-2 text-sm text-foreground/80">
-              <li className="flex gap-2"><span className="h-1.5 w-1.5 rounded-full bg-sky mt-2" /> Edge platforms & global read paths</li>
-              <li className="flex gap-2"><span className="h-1.5 w-1.5 rounded-full bg-green mt-2" /> Internal developer platforms</li>
-              <li className="flex gap-2"><span className="h-1.5 w-1.5 rounded-full bg-pink mt-2" /> Writing here, more often</li>
-            </ul>
           </div>
         </div>
       </section>

@@ -79,7 +79,8 @@ src/
 └── index.css                # Tailwind layers, design tokens, prose styles, motion utilities
 functions/
 ├── writing/[slug].ts        # Edge function: injects OG/SEO meta for /writing/:slug
-└── projects/[slug].ts       # Edge function: injects OG/SEO meta for /projects/:slug
+├── projects/[slug].ts       # Edge function: injects OG/SEO meta for /projects/:slug
+└── cv.ts                    # Edge function: 302 from /cv to the hosted CV (URL in src/content/links.ts)
 scripts/
 ├── generate-rss.mjs         # Runs during npm run build; writes dist/feed.xml
 └── audit-deps.mjs           # npm run deps:audit
@@ -105,6 +106,8 @@ Routes are defined in `src/App.tsx`:
 - `/projects/:slug` → `Project.tsx`
 - `/about` → `About.tsx`
 - `/experience` → `Experience.tsx`
+- `/links` → `Links.tsx` (printed QR code destination — keep this route stable)
+- `/cv` → `CvRedirect.tsx` (dev fallback; in production `functions/cv.ts` redirects first)
 - `*` → `NotFound.tsx` (keep custom routes above the catch-all)
 
 SPA fallback on Cloudflare is handled by `wrangler.json` (`"not_found_handling": "single-page-application"`). There is no `_redirects` file.
@@ -113,7 +116,7 @@ SPA fallback on Cloudflare is handled by `wrangler.json` (`"not_found_handling":
 
 Two separate content layers:
 
-1. **Local content** (`src/content/`): experience, education, skills — edited directly in the repo.
+1. **Local content** (`src/content/`): experience, education, skills, and contact/profile links (`links.ts`, including the Google Drive CV URL) — edited directly in the repo.
 2. **Remote content** (Craft CMS via `src/lib/craft.ts`): writing posts and projects, fetched client-side at runtime. Slugs are derived from titles; unpublished items are filtered out.
 
 If writing or project pages break, check `src/lib/craft.ts` and Craft API availability before touching page components.
