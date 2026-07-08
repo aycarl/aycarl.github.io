@@ -32,7 +32,7 @@ const Links = () => {
             Carl<span className="text-yellow">.</span>
           </h1>
           <p className="text-foreground/70 mb-10">
-            Full-stack software engineer &amp; solutions architect.
+            AI solutions engineer &amp; full-stack developer.
           </p>
 
           <nav className="flex flex-col gap-3" aria-label="Contact and profile links">

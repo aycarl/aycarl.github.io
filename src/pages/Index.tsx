@@ -28,7 +28,7 @@ const Index = () => {
         <div className="container relative pt-20 md:pt-32 pb-24 md:pb-40">
           <div className="max-w-4xl">
             <p className="text-sm tracking-widest uppercase text-foreground/60 mb-6 animate-fade-up">
-              Solutions architect · Full-Stack Software Engineer
+              AI Solutions Engineer · Full-stack Developer
             </p>
             <h1 className="wordmark text-[18vw] md:text-[12rem] leading-[0.85] animate-fade-up">
               aycarl<span className="text-orange">.</span>

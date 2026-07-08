@@ -15,10 +15,10 @@ const About = () => {
           </h1>
           <div className="space-y-5 text-lg text-foreground/80">
             <p>
-              I'm a full-stack software engineer and solutions architect working on the boundary
-              between product and infrastructure — designing systems that earn their complexity,
-              shipping the smallest version that proves the idea, and helping organizations
-              navigate cloud, data, and platform decisions.
+              I'm an AI solutions engineer and full-stack developer. I help teams figure out
+              where AI can genuinely make their work easier, then I build it — from the first
+              rough demo to something people rely on every day. I like starting small, proving
+              an idea works, and only adding complexity when it earns its keep.
             </p>
             <p>
               Outside of work, and in no particular order, I practice Japanese and Zulu on Duolingo,
