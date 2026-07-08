@@ -22,7 +22,7 @@ const Post = () => {
   useEffect(() => {
     if (data?.post) document.title = `${data.post.title} — aycarl.`;
     return () => {
-      document.title = "aycarl. — solutions architect";
+      document.title = "aycarl. — AI solutions engineer";
     };
   }, [data]);
 

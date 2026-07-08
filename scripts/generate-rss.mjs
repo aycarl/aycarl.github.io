@@ -163,7 +163,7 @@ function buildFeed(posts) {
   <channel>
     <title>aycarl — Writing</title>
     <link>${SITE_URL}/writing</link>
-    <description>Notes and essays on systems design, infrastructure, and the craft of being a solutions architect.</description>
+    <description>Notes on building useful things with AI, software, and a bit of common sense.</description>
     <language>en-us</language>
     <lastBuildDate>${now}</lastBuildDate>
     <atom:link href="${SITE_URL}/feed.xml" rel="self" type="application/rss+xml" />

@@ -18,7 +18,7 @@ const Writing = () => {
           eyebrow="Writing"
           title="Notes & essays"
           accent="pink"
-          description="Working notes on systems design, infrastructure, and the craft of being a solutions architect."
+          description="Notes on building useful things with AI, software, and a bit of common sense."
         />
 
         <div className="mt-8 flex flex-wrap items-center gap-3">
