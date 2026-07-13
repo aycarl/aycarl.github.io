@@ -13,9 +13,10 @@ const About = () => {
       <section className="container py-16 md:py-24 grid grid-cols-1 md:grid-cols-12 gap-12">
         <div className="md:col-span-7">
           <p className="text-sm uppercase tracking-widest text-foreground/60 mb-4">About</p>
-          <h1 className="wordmark text-6xl md:text-8xl mb-8">
+          <h1 className="wordmark text-6xl md:text-8xl mb-3">
             Hi, I'm Carl<span className="text-yellow">.</span>
           </h1>
+          <p className="text-sm text-foreground/50 tracking-wide mb-8">Carl Yao Agbenyega</p>
           <div className="space-y-5 text-lg text-foreground/80">
             <p>
               I'm an AI solutions engineer and full-stack developer. I help teams figure out
