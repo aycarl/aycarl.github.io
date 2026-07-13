@@ -3,7 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>aycarl.</title>
+
+    <!--
+      Baseline SEO / Open Graph / Twitter tags — this is the single source of
+      tag STRUCTURE for the whole site. Edge functions (functions/writing/[slug].ts,
+      functions/projects/[slug].ts, and the per-route static functions added by
+      the SEO work) REWRITE these tags in place via src/lib/seo.ts#injectMeta
+      (Cloudflare HTMLRewriter, setAttribute/setInnerContent only). They never
+      append duplicate tags. If you add/remove a tag here, update injectMeta's
+      selector list in the same change.
+    -->
+    <title>aycarl. — AI solutions engineer</title>
+    <meta name="description" content="I'm an AI solutions engineer and full-stack developer. I help teams figure out where AI can genuinely make their work easier, then I build it." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://aycarl.com/" />
+
+    <meta property="og:site_name" content="aycarl." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="aycarl. — AI solutions engineer" />
+    <meta property="og:description" content="I'm an AI solutions engineer and full-stack developer. I help teams figure out where AI can genuinely make their work easier, then I build it." />
+    <meta property="og:url" content="https://aycarl.com/" />
+    <meta property="og:image" content="https://aycarl.com/og-default.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="aycarl. — AI solutions engineer" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="aycarl. — AI solutions engineer" />
+    <meta name="twitter:description" content="I'm an AI solutions engineer and full-stack developer. I help teams figure out where AI can genuinely make their work easier, then I build it." />
+    <meta name="twitter:image" content="https://aycarl.com/og-default.png" />
+
     <link rel="alternate" type="application/rss+xml" title="aycarl — Writing" href="/feed.xml" />
   </head>
   <body>

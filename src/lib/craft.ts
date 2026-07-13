@@ -87,7 +87,7 @@ const parseTags = (raw: unknown): string[] => {
     .filter(Boolean);
 };
 
-const parsePublished = (raw: unknown, fallback = false): boolean => {
+export const parsePublished = (raw: unknown, fallback = false): boolean => {
   if (raw === undefined || raw === null || raw === "") return fallback;
   if (raw === true) return true;
   if (raw === false) return false;
@@ -104,7 +104,7 @@ const parseStringArray = (raw: unknown): string[] => {
     .filter(Boolean);
 };
 
-const stripMarkdown = (md: string): string =>
+export const stripMarkdown = (md: string): string =>
   md
     .replace(/`{1,3}[^`]*`{1,3}/g, "")
     .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
