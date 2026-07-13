@@ -28,6 +28,7 @@ declare class HTMLRewriter {
 
 export { SITE_URL };
 export const SITE_NAME = "aycarl.";
+export const FULL_NAME = "Carl Yao Agbenyega";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-default.png`;
 export const DEFAULT_OG_IMAGE_WIDTH = "1200";
 export const DEFAULT_OG_IMAGE_HEIGHT = "630";
@@ -48,7 +49,7 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   "/": { title: DEFAULT_TITLE, description: DEFAULT_DESCRIPTION },
   "/about": {
     title: "About — aycarl.",
-    description: "Background, approach, and how to get in touch with Carl — AI solutions engineer and full-stack developer.",
+    description: `${FULL_NAME} — AI solutions engineer and full-stack developer. Background, approach, and how to get in touch.`,
   },
   "/experience": {
     title: "Experience — aycarl.",
@@ -254,7 +255,8 @@ export function personJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: SITE_NAME,
+    name: FULL_NAME,
+    alternateName: SITE_NAME,
     url: SITE_URL,
     jobTitle: "AI Solutions Engineer",
     sameAs: [GITHUB_URL, LINKEDIN_URL],
@@ -294,7 +296,7 @@ export function blogPostingJsonLd(post: BlogPostingInput) {
     // field), so datePublished/dateModified are always identical.
     datePublished: post.date || undefined,
     dateModified: post.date || undefined,
-    author: { "@type": "Person", name: SITE_NAME, url: SITE_URL },
+    author: { "@type": "Person", name: FULL_NAME, url: SITE_URL },
     publisher: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
   };
