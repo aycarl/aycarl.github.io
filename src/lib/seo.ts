@@ -8,7 +8,7 @@
 // block, which has no baseline placeholder to rewrite and is therefore
 // appended.
 
-import { SITE_URL } from "../content/links";
+import { SITE_URL, GITHUB_URL, LINKEDIN_URL } from "../content/links";
 
 // HTMLRewriter is a Cloudflare Workers runtime global (edge-only). This file
 // is imported from both src/ (typechecked against DOM lib) and functions/
@@ -41,11 +41,46 @@ export interface RouteMeta {
   noindex?: boolean;
 }
 
-// Static-route entries are owned by the SEO/sitemap work; this file only
-// seeds "/" so injectMeta has a real default to fall back on.
+// Single source of truth for static-route meta, consumed by both the
+// per-route edge functions (functions/*.ts) and the client-side usePageMeta
+// hook, so server- and client-rendered titles/descriptions never diverge.
 export const ROUTE_META: Record<string, RouteMeta> = {
   "/": { title: DEFAULT_TITLE, description: DEFAULT_DESCRIPTION },
+  "/about": {
+    title: "About — aycarl.",
+    description: "Background, approach, and how to get in touch with Carl — AI solutions engineer and full-stack developer.",
+  },
+  "/experience": {
+    title: "Experience — aycarl.",
+    description: "A timeline of roles, projects, and growth across design, engineering, and leadership.",
+  },
+  "/links": {
+    title: "Links — aycarl.",
+    description: "CV, LinkedIn, GitHub, and email — quick links for Carl, AI solutions engineer & full-stack developer.",
+    noindex: true, // thin QR-code destination page duplicating primary nav — not worth indexing separately
+  },
+  "/writing": {
+    title: "Writing — aycarl.",
+    description: "Notes on building useful things with AI, software, and a bit of common sense.",
+  },
+  "/writing/archive": {
+    title: "Archive — Writing — aycarl.",
+    description: "The full archive of every post, filterable by title or tag.",
+  },
+  "/writing/search": {
+    title: "Search — Writing — aycarl.",
+    description: "Search across all posts on aycarl.",
+    noindex: true, // parametric ?q= results — no unique canonical value to index
+  },
+  "/projects": {
+    title: "Projects — aycarl.",
+    description: "Selected work across systems design, infrastructure, and platform engineering.",
+  },
 };
+
+// Static routes worth listing in sitemap.xml — mirrors the literal-path
+// routes in src/App.tsx, minus noindex-marked entries above (/links, /writing/search).
+export const STATIC_ROUTES = ["/", "/writing", "/writing/archive", "/projects", "/about", "/experience"] as const;
 
 export const escapeHtml = (input: string): string =>
   input
@@ -209,4 +244,76 @@ export function buildSitemapXml(urls: SitemapUrl[]): string {
     })
     .join("\n");
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`;
+}
+
+// ---------- JSON-LD structured data ----------
+// Consumed via injectMeta's `jsonLd` option (appended as a single <script>
+// block per response — see the jsonLd branch in injectMeta above).
+
+export function personJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: SITE_NAME,
+    url: SITE_URL,
+    jobTitle: "AI Solutions Engineer",
+    sameAs: [GITHUB_URL, LINKEDIN_URL],
+  };
+}
+
+export function webSiteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_NAME,
+    url: SITE_URL,
+    potentialAction: {
+      "@type": "SearchAction",
+      target: `${SITE_URL}/writing/search?q={search_term_string}`,
+      "query-input": "required name=search_term_string",
+    },
+  };
+}
+
+export interface BlogPostingInput {
+  title: string;
+  slug: string;
+  date?: string;
+  excerpt: string;
+}
+
+export function blogPostingJsonLd(post: BlogPostingInput) {
+  const url = `${SITE_URL}/writing/${post.slug}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    url,
+    // Craft only exposes a single "date" property (no separate "last updated"
+    // field), so datePublished/dateModified are always identical.
+    datePublished: post.date || undefined,
+    dateModified: post.date || undefined,
+    author: { "@type": "Person", name: SITE_NAME, url: SITE_URL },
+    publisher: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+  };
+}
+
+export interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+export function breadcrumbJsonLd(items: BreadcrumbItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  };
 }

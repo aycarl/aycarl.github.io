@@ -5,6 +5,8 @@ import { HeroBlobField } from "@/components/Blob";
 import { PostListItem } from "@/components/PostListItem";
 import { fetchPosts, fetchProjects } from "@/lib/craft";
 import { ArrowUpRight } from "lucide-react";
+import { usePageMeta } from "@/hooks/usePageMeta";
+import { ROUTE_META } from "@/lib/seo";
 
 const accentDot: Record<string, string> = {
   sky: "bg-sky",
@@ -15,6 +17,7 @@ const accentDot: Record<string, string> = {
 };
 
 const Index = () => {
+  usePageMeta(ROUTE_META["/"]);
   const { data: allPosts } = useQuery({ queryKey: ["posts"], queryFn: fetchPosts });
   const { data: allProjects } = useQuery({ queryKey: ["projects"], queryFn: fetchProjects });
   const posts = (allPosts ?? []).slice(0, 3);

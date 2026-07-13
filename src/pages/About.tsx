@@ -3,8 +3,11 @@ import { Blob } from "@/components/Blob";
 import { FileText, Mail } from "lucide-react";
 import { BrandGithub, BrandLinkedin } from "@/components/icons/BrandIcons";
 import { CONTACT_EMAIL, GITHUB_URL, LINKEDIN_URL } from "@/content/links";
+import { usePageMeta } from "@/hooks/usePageMeta";
+import { ROUTE_META } from "@/lib/seo";
 
 const About = () => {
+  usePageMeta(ROUTE_META["/about"]);
   return (
     <SiteLayout>
       <section className="container py-16 md:py-24 grid grid-cols-1 md:grid-cols-12 gap-12">

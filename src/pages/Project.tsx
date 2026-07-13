@@ -1,10 +1,10 @@
 import { Link, useParams } from "react-router-dom";
-import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Markdown } from "@/components/Markdown";
 import { fetchProjectBySlug } from "@/lib/craft";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const accentDot: Record<string, string> = {
   sky: "bg-sky",
@@ -22,9 +22,11 @@ const Project = () => {
     enabled: !!slug,
   });
 
-  useEffect(() => {
-    if (project) document.title = `${project.title} — aycarl.`;
-  }, [project]);
+  usePageMeta({
+    title: project ? `${project.title} — aycarl.` : "Loading — aycarl.",
+    description: project?.summary || "Read about this project on aycarl.",
+    canonicalPath: project ? `/projects/${project.slug}` : undefined,
+  });
 
   if (isLoading) {
     return (

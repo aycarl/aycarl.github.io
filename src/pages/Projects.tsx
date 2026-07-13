@@ -3,6 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { SiteLayout } from "@/components/SiteLayout";
 import { PageHero } from "@/components/PageHero";
 import { fetchProjects } from "@/lib/craft";
+import { usePageMeta } from "@/hooks/usePageMeta";
+import { ROUTE_META } from "@/lib/seo";
 
 const accentDot: Record<string, string> = {
   sky: "bg-sky",
@@ -13,6 +15,7 @@ const accentDot: Record<string, string> = {
 };
 
 const Projects = () => {
+  usePageMeta(ROUTE_META["/projects"]);
   const { data: projects, isLoading, error } = useQuery({ queryKey: ["projects"], queryFn: fetchProjects });
 
   return (

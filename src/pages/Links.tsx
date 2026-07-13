@@ -1,9 +1,10 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, FileText, Mail } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { BrandGithub, BrandLinkedin } from "@/components/icons/BrandIcons";
 import { CONTACT_EMAIL, GITHUB_URL, LINKEDIN_URL } from "@/content/links";
+import { usePageMeta } from "@/hooks/usePageMeta";
+import { ROUTE_META } from "@/lib/seo";
 
 const dots = ["bg-sky", "bg-green", "bg-yellow", "bg-pink", "bg-orange"];
 
@@ -11,13 +12,7 @@ const linkItemClass =
   "inline-flex w-full items-center gap-3 rounded-full border border-border px-6 py-4 text-sm hover:bg-secondary transition-colors";
 
 const Links = () => {
-  useEffect(() => {
-    const previousTitle = document.title;
-    document.title = "Links — aycarl.";
-    return () => {
-      document.title = previousTitle;
-    };
-  }, []);
+  usePageMeta(ROUTE_META["/links"]);
 
   return (
     <SiteLayout>

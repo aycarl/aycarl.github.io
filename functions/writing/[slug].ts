@@ -1,7 +1,7 @@
 import { fetchPublishedPosts } from "../../src/lib/craft-edge";
-import { injectMeta } from "../../src/lib/seo";
+import { injectMeta, SITE_URL, blogPostingJsonLd, breadcrumbJsonLd } from "../../src/lib/seo";
 
-export async function onRequest(context: any) {
+export async function onRequest(context: { params: Record<string, string>; next: () => Promise<Response> }) {
   const { params, next } = context;
   const slug = params.slug as string;
 
@@ -18,6 +18,13 @@ export async function onRequest(context: any) {
       type: "article",
       image: post.ogImage, // undefined today — injectMeta falls back to the default OG image
       publishedTime: post.date || undefined,
+      jsonLd: [
+        blogPostingJsonLd({ title: post.title, slug, date: post.date, excerpt: post.excerpt }),
+        breadcrumbJsonLd([
+          { name: "Writing", url: `${SITE_URL}/writing` },
+          { name: post.title, url: `${SITE_URL}/writing/${slug}` },
+        ]),
+      ],
     });
   } catch (err) {
     console.error("writing/[slug] edge meta error:", err);
