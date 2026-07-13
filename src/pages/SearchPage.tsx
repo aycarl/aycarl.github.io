@@ -5,6 +5,8 @@ import { ArrowLeft, Search as SearchIcon } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { searchPosts } from "@/lib/craft";
 import { Input } from "@/components/ui/input";
+import { usePageMeta } from "@/hooks/usePageMeta";
+import { ROUTE_META } from "@/lib/seo";
 
 const formatDate = (d: string) =>
   new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
@@ -38,6 +40,7 @@ const Highlight = ({ text, query }: { text: string; query: string }) => {
 };
 
 const SearchPage = () => {
+  usePageMeta(ROUTE_META["/writing/search"]);
   const [params, setParams] = useSearchParams();
   const initial = params.get("q") ?? "";
   const [input, setInput] = useState(initial);

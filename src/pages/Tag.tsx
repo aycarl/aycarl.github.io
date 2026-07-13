@@ -5,10 +5,16 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { PostListItem } from "@/components/PostListItem";
 import { fetchPosts } from "@/lib/craft";
 import { PostListSkeleton } from "@/components/PostListSkeleton";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const Tag = () => {
   const { tag } = useParams<{ tag: string }>();
   const decoded = tag ? decodeURIComponent(tag) : "";
+  usePageMeta({
+    title: `#${decoded} — Writing — aycarl.`,
+    description: `Posts tagged #${decoded} on aycarl.`,
+    canonicalPath: `/writing/tag/${encodeURIComponent(decoded)}`,
+  });
   const { data: posts, isLoading, error } = useQuery({ queryKey: ["posts"], queryFn: fetchPosts });
 
   const filtered = posts?.filter((p) => p.tags.some((t) => t.toLowerCase() === decoded.toLowerCase())) ?? [];

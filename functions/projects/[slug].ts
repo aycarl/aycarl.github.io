@@ -1,7 +1,7 @@
 import { fetchPublishedProjects } from "../../src/lib/craft-edge";
-import { injectMeta } from "../../src/lib/seo";
+import { injectMeta, SITE_URL, breadcrumbJsonLd } from "../../src/lib/seo";
 
-export async function onRequest(context: any) {
+export async function onRequest(context: { params: Record<string, string>; next: () => Promise<Response> }) {
   const { params, next } = context;
   const slug = params.slug as string;
 
@@ -18,6 +18,12 @@ export async function onRequest(context: any) {
       type: "article",
       image: project.ogImage,
       publishedTime: project.date || undefined,
+      jsonLd: [
+        breadcrumbJsonLd([
+          { name: "Projects", url: `${SITE_URL}/projects` },
+          { name: project.title, url: `${SITE_URL}/projects/${slug}` },
+        ]),
+      ],
     });
   } catch (err) {
     console.error("projects/[slug] edge meta error:", err);

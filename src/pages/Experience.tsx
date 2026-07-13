@@ -3,6 +3,8 @@ import { PageHero } from "@/components/PageHero";
 import { experiences } from "@/content/experience";
 import { education } from "@/content/education";
 import { skillCategories } from "@/content/skills";
+import { usePageMeta } from "@/hooks/usePageMeta";
+import { ROUTE_META } from "@/lib/seo";
 
 const accentDot: Record<string, string> = {
   sky: "bg-sky",
@@ -19,6 +21,7 @@ const getAccentColor = (index: number): keyof typeof accentDot => {
 };
 
 const Experience = () => {
+  usePageMeta(ROUTE_META["/experience"]);
   return (
     <SiteLayout>
       {/* Header */}

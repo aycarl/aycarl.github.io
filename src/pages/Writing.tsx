@@ -6,8 +6,11 @@ import { PageHero } from "@/components/PageHero";
 import { PostListItem } from "@/components/PostListItem";
 import { fetchPosts } from "@/lib/craft";
 import { PostListSkeleton } from "@/components/PostListSkeleton";
+import { usePageMeta } from "@/hooks/usePageMeta";
+import { ROUTE_META } from "@/lib/seo";
 
 const Writing = () => {
+  usePageMeta(ROUTE_META["/writing"]);
   const { data: posts, isLoading, error } = useQuery({ queryKey: ["posts"], queryFn: fetchPosts });
   const recent = posts?.slice(0, 3) ?? [];
 

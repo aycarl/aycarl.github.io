@@ -6,6 +6,8 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { PageHero } from "@/components/PageHero";
 import { fetchPosts } from "@/lib/craft";
 import { Input } from "@/components/ui/input";
+import { usePageMeta } from "@/hooks/usePageMeta";
+import { ROUTE_META } from "@/lib/seo";
 
 const formatDate = (d: string) =>
   new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
@@ -13,6 +15,7 @@ const formatDate = (d: string) =>
 const yearOf = (d: string) => (d ? new Date(d).getFullYear() : 0);
 
 const Archive = () => {
+  usePageMeta(ROUTE_META["/writing/archive"]);
   const { data: posts, isLoading, error } = useQuery({ queryKey: ["posts"], queryFn: fetchPosts });
   const [filter, setFilter] = useState("");
 

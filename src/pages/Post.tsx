@@ -1,10 +1,10 @@
-import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Markdown } from "@/components/Markdown";
 import { fetchPostBySlug } from "@/lib/craft";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const formatDate = (d: string) =>
   new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
@@ -19,12 +19,11 @@ const Post = () => {
     enabled: !!slug,
   });
 
-  useEffect(() => {
-    if (data?.post) document.title = `${data.post.title} — aycarl.`;
-    return () => {
-      document.title = "aycarl. — AI solutions engineer";
-    };
-  }, [data]);
+  usePageMeta({
+    title: data?.post ? `${data.post.title} — aycarl.` : "Loading — aycarl.",
+    description: data?.post?.excerpt || "Read this writing on aycarl.",
+    canonicalPath: data?.post ? `/writing/${data.post.slug}` : undefined,
+  });
 
   if (isLoading) {
     return (

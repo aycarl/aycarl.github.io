@@ -34,6 +34,17 @@
     <meta name="twitter:image" content="https://aycarl.com/og-default.png" />
 
     <link rel="alternate" type="application/rss+xml" title="aycarl — Writing" href="/feed.xml" />
+
+    <!--
+      Person + WebSite JSON-LD, static rather than edge-injected: Cloudflare
+      Pages Functions routing does not reliably invoke a function for the
+      bare "/" path when a literal index.html asset exists at that path
+      (confirmed against wrangler pages dev; see functions/*.ts history for
+      the removed functions/index.ts). Keep this in sync with
+      personJsonLd()/webSiteJsonLd() in src/lib/seo.ts.
+    -->
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"aycarl.","url":"https://aycarl.com","jobTitle":"AI Solutions Engineer","sameAs":["https://github.com/aycarl","https://www.linkedin.com/in/aycarl"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"aycarl.","url":"https://aycarl.com","potentialAction":{"@type":"SearchAction","target":"https://aycarl.com/writing/search?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
   </head>
   <body>
     <div id="root"></div>

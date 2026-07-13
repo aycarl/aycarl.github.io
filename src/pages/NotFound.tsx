@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const exploreLinks = [
   { to: "/", label: "Go home", description: "Start from the landing page." },
@@ -16,15 +17,14 @@ const NotFound = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const previousTitle = document.title;
-
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
-    document.title = "404 — aycarl.";
-
-    return () => {
-      document.title = previousTitle;
-    };
   }, [location.pathname]);
+
+  usePageMeta({
+    title: "404 — aycarl.",
+    description: "This page doesn't exist. Explore aycarl's writing, projects, and experience instead.",
+    noindex: true,
+  });
 
   return (
     <SiteLayout>
