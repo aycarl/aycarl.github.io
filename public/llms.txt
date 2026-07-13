@@ -1,0 +1,16 @@
+# aycarl.
+
+> Carl — AI solutions engineer and full-stack developer. Personal site with
+> writing on AI-assisted development, systems design, and infrastructure,
+> plus selected project case studies.
+
+## Docs
+
+- [Writing](https://aycarl.com/writing): Essays and notes, most recent first.
+- [Projects](https://aycarl.com/projects): Selected project case studies.
+- [About](https://aycarl.com/about): Background and contact.
+
+## Optional
+
+- [RSS feed](https://aycarl.com/feed.xml): Machine-readable feed of all posts.
+- [Sitemap](https://aycarl.com/sitemap.xml): Full list of indexable URLs.
