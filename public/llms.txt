@@ -1,6 +1,6 @@
 # aycarl.
 
-> Carl — AI solutions engineer and full-stack developer. Personal site with
+> Carl — Full-Stack Software Developer & AI Engineer. Personal site with
 > writing on AI-assisted development, systems design, and infrastructure,
 > plus selected project case studies.
 

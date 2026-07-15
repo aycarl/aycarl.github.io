@@ -27,7 +27,7 @@ const Links = () => {
             Carl<span className="text-yellow">.</span>
           </h1>
           <p className="text-foreground/70 mb-10">
-            AI solutions engineer &amp; full-stack developer.
+            Full-Stack Software Developer & AI Engineer.
           </p>
 
           <nav className="flex flex-col gap-3" aria-label="Contact and profile links">

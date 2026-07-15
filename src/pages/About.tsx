@@ -19,7 +19,7 @@ const About = () => {
           <p className="text-sm text-foreground/50 tracking-wide mb-8">Carl Yao Agbenyega</p>
           <div className="space-y-5 text-lg text-foreground/80">
             <p>
-              I'm an AI solutions engineer and full-stack developer. I help teams figure out
+              I'm a Full-Stack Software Developer and AI Engineer. I help teams figure out
               where AI can genuinely make their work easier, then I build it — from the first
               rough demo to something people rely on every day. I like starting small, proving
               an idea works, and only adding complexity when it earns its keep.

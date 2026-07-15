@@ -32,9 +32,9 @@ export const FULL_NAME = "Carl Yao Agbenyega";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-default.png`;
 export const DEFAULT_OG_IMAGE_WIDTH = "1200";
 export const DEFAULT_OG_IMAGE_HEIGHT = "630";
-export const DEFAULT_TITLE = "aycarl. — AI solutions engineer";
+export const DEFAULT_TITLE = "aycarl. — Full-Stack Software Developer & AI Engineer";
 export const DEFAULT_DESCRIPTION =
-  "I'm an AI solutions engineer and full-stack developer. I help teams figure out where AI can genuinely make their work easier, then I build it.";
+  "I'm a Full-Stack Software Developer & AI Engineer. I help teams figure out where AI can genuinely make their work easier, then I build it.";
 
 export interface RouteMeta {
   title: string;
@@ -49,7 +49,7 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   "/": { title: DEFAULT_TITLE, description: DEFAULT_DESCRIPTION },
   "/about": {
     title: "About — aycarl.",
-    description: `${FULL_NAME} — AI solutions engineer and full-stack developer. Background, approach, and how to get in touch.`,
+    description: `${FULL_NAME} — Full-Stack Software Developer & AI Engineer. Background, approach, and how to get in touch.`,
   },
   "/experience": {
     title: "Experience — aycarl.",
@@ -57,7 +57,7 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   },
   "/links": {
     title: "Links — aycarl.",
-    description: "CV, LinkedIn, GitHub, and email — quick links for Carl, AI solutions engineer & full-stack developer.",
+    description: "CV, LinkedIn, GitHub, and email — quick links for Carl, Full-Stack Software Developer & AI Engineer.",
     noindex: true, // thin QR-code destination page duplicating primary nav — not worth indexing separately
   },
   "/writing": {
@@ -258,7 +258,7 @@ export function personJsonLd() {
     name: FULL_NAME,
     alternateName: SITE_NAME,
     url: SITE_URL,
-    jobTitle: "AI Solutions Engineer",
+    jobTitle: "Full-Stack Software Developer",
     sameAs: [GITHUB_URL, LINKEDIN_URL],
   };
 }
