@@ -1,8 +1,21 @@
 {
   "name": "aycarl",
   "compatibility_date": "2026-05-20",
+  "main": "./worker/index.ts",
   "assets": {
     "directory": "./dist",
-    "not_found_handling": "single-page-application"
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": [
+      "/sitemap.xml",
+      "/cv",
+      "/about",
+      "/experience",
+      "/links",
+      "/projects",
+      "/projects/*",
+      "/writing",
+      "/writing/*"
+    ]
   }
 }

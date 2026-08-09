@@ -28,11 +28,12 @@ In practice, the most important one is TanStack Query. It handles browser-side c
 
 ## 3. Routing model
 
-This is a client-side routed application using React Router (`BrowserRouter`), augmented with **Cloudflare Pages Edge Functions** and native routing redirects.
+This is a client-side routed application using React Router (`BrowserRouter`), augmented with edge-side routing in `worker/index.ts` and native SPA fallback. Production is a Cloudflare Worker with static assets, not Cloudflare Pages — see [ADR 0002](./adr/0002-actual-deployment-is-workers-with-assets.md).
 
 ### Edge Redirection & SEO Injection
 1. **Fallback Routing:** `wrangler.json` sets `"not_found_handling": "single-page-application"`, which maps all deep browser entries (e.g. `/experience`) back to our main index bundle with a `200 OK` code so React Router can hydration-load the path smoothly. There is no `_redirects` file.
-2. **Metadata Injection Functions:** Dynamic routes under `/writing/:slug` and `/projects/:slug` are intercepted at the edge by serverless script middleware located inside the `/functions` directory:
+2. **Worker dispatch:** `wrangler.json`'s `assets.run_worker_first` lists the specific paths that should reach `worker/index.ts` at all (everything else is served straight from static assets). For those paths, `worker/index.ts` dispatches to the matching handler under `/functions` — there is no automatic file-based routing here, unlike Cloudflare Pages.
+3. **Metadata Injection Functions:** Dynamic routes under `/writing/:slug` and `/projects/:slug` are handled by:
    - `functions/writing/[slug].ts`
    - `functions/projects/[slug].ts`
    In addition, `functions/cv.ts` issues an edge 302 from `/cv` to the externally hosted CV (target URL in `src/content/links.ts`).
