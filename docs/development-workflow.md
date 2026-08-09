@@ -23,19 +23,21 @@ npm run dev
 
 The local UI server runs on `http://localhost:8080` (configured in `vite.config.ts`).
 
-### Start the Edge Sandbox (To test Edge Functions & Redirects)
+### Start the Edge Sandbox (To test Edge Routing & Redirects)
 
-Standard `npm run dev` serves dynamic files on the client but **will not execute the `/functions` Edge Middleware**. To test edge metadata injection and routing redirects locally:
+> Production is actually a plain Cloudflare Worker with static assets, not Cloudflare Pages — see [ADR 0002](./adr/0002-actual-deployment-is-workers-with-assets.md). `wrangler pages dev` still runs, but it exercises Pages' auto-compiled `/functions` routing, which is **not** what runs in production; use `wrangler dev` below to match reality.
+
+Standard `npm run dev` serves dynamic files on the client but **will not execute `worker/index.ts` or the `/functions` handlers it dispatches to**. To test edge metadata injection and routing redirects locally:
 
 1. Build the static distribution:
    ```bash
    npm run build
    ```
-2. Spin up the Wrangler pages server:
+2. Spin up the Worker locally:
    ```bash
-   npx wrangler pages dev dist --port 8080
+   npx wrangler dev
    ```
-This will mount your local `/functions` directory on a local V8 sandbox and route local visits through the edge code.
+This runs `worker/index.ts` (the real production entry point) against a local V8 sandbox, dispatching to `/functions` handlers for the routes listed in `wrangler.json`'s `assets.run_worker_first` and falling back to static assets/SPA for everything else.
 
 ## 2. Available scripts
 
@@ -77,19 +79,19 @@ For maintainers, the practical rule is:
 
 ## 4. Deployment flow
 
-Hosting has migrated from GitHub Pages to **Cloudflare Pages**. 
+Hosting has migrated from GitHub Pages to **Cloudflare** — but as a plain Worker with static assets (Workers Builds), not Cloudflare Pages. See [ADR 0002](./adr/0002-actual-deployment-is-workers-with-assets.md).
 
 ### Native Git Pipeline (Recommended)
-Deployment is fully automated through Cloudflare Pages' native GitHub integration:
+Deployment is fully automated through Cloudflare Workers Builds (source-connected to GitHub in the Cloudflare dashboard):
 1. Every push to the `main` branch triggers an automated build on Cloudflare's servers.
 2. Cloudflare pulls the repository, runs `npm install`, and builds the static output using `npm run build`.
-3. Cloudflare automatically detects the `/functions` directory in the root and compiles these into V8 Workers.
+3. Cloudflare deploys `worker/index.ts` (the `main` entry in `wrangler.json`) as the Worker script. It manually dispatches the routes listed in `assets.run_worker_first` to their `/functions` handlers — there is no automatic `/functions`-directory compilation; that's a Cloudflare Pages-only convention.
 4. The site is instantly served globally across the Cloudflare CDN.
-5. Every pull request or branch push automatically creates an isolated preview URL (e.g. `branch-name.aycarl.pages.dev`).
+5. Per-branch/PR preview URLs (previously `<branch>.aycarl.pages.dev`) are a Cloudflare Pages feature; confirm current preview behavior in the Cloudflare dashboard rather than assuming it still applies under Workers Builds.
 
 ### Routing & Redirection configuration
 The deployment relies on:
-- `wrangler.json` at the project root which specifies the static assets directory (`./dist`) and configures native SPA fallback handling (`"not_found_handling": "single-page-application"`) for Cloudflare's unified Workers/Pages asset model. This is the sole SPA fallback mechanism — there is no `_redirects` file.
+- `wrangler.json` at the project root which specifies the static assets directory (`./dist`), the `ASSETS` binding, `assets.run_worker_first` (which paths reach the Worker), and native SPA fallback handling (`"not_found_handling": "single-page-application"`). This is the sole SPA fallback mechanism — there is no `_redirects` file.
 - `public/404.html` kept purely as a static styling hard-fallback for severe connection/DNS edge misses (no query redirect script).
 
 ## 5. Path aliases and imports
@@ -152,13 +154,14 @@ Check whether the issue belongs in:
 - `src/index.css`
 - `tailwind.config.ts`
 
-### The app builds locally but behaves differently on Cloudflare Pages
+### The app builds locally but behaves differently in production
 
 Check for:
 
 - route fallback issues related to SPA hosting
 - content depending on external services
 - accidental assumptions about server-side routing
+- a route that needs `worker/index.ts` dispatch but is missing from `wrangler.json`'s `assets.run_worker_first` (it will silently fall through to the SPA shell instead of running its `/functions` handler)
 
 ## 8. Recommended maintenance rhythm
 

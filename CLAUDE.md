@@ -6,7 +6,7 @@ This file provides guidance when working with code in this repository.
 
 Personal portfolio site for aycarl.com built as a **React single-page application** with **Vite**, **TypeScript**, **React Router**, **TanStack Query**, and **Tailwind CSS** (plus a generated shadcn/ui component layer). Writing and project content is fetched at runtime from a public Craft CMS API; experience, education, and skills content lives in local TypeScript modules.
 
-Hosted on **Cloudflare Pages** with edge functions for SEO metadata injection (see `docs/adr/0001-migrate-to-cloudflare-pages-for-edge-seo.md`).
+Hosted on **Cloudflare Workers with static assets** (a plain Worker bound to the custom domain, *not* Cloudflare Pages — see `docs/adr/0002-actual-deployment-is-workers-with-assets.md`) with edge-side SEO metadata injection routed through `worker/index.ts` (see `docs/adr/0001-migrate-to-cloudflare-pages-for-edge-seo.md` for the original edge-SEO design).
 
 ## Development Workflow
 
@@ -43,14 +43,16 @@ npm run test:watch
 npm run deps:audit
 ```
 
-### Testing edge functions locally
+### Testing edge routing locally
 
-`npm run dev` does **not** execute the Cloudflare edge functions in `/functions`. To test them:
+`npm run dev` does **not** execute the routing logic in `worker/index.ts` / `/functions`. To test it:
 
 ```bash
 npm run build
-npx wrangler pages dev dist --port 8080
+npx wrangler dev
 ```
+
+This is a real Worker (not `wrangler pages dev`) — see `docs/adr/0002-actual-deployment-is-workers-with-assets.md`.
 
 ## Architecture
 
@@ -61,11 +63,15 @@ npx wrangler pages dev dist --port 8080
 - **Styling**: Tailwind CSS v3, light theme only; design tokens in `src/index.css`
 - **UI primitives**: shadcn/ui (Radix) in `src/components/ui/` — only a small subset is used (input, sheet, toaster, sonner, tooltip)
 - **Testing**: Vitest + Testing Library (minimal coverage currently)
-- **Hosting**: Cloudflare Pages + edge functions
+- **Hosting**: Cloudflare Worker with static assets (`wrangler.json` `main` + `assets`), custom-domain-bound; not Cloudflare Pages
 
 ### Application Structure
 
 ```text
+worker/
+└── index.ts                 # Worker fetch handler: dispatches specific paths to /functions
+                              # handlers (see wrangler.json's assets.run_worker_first for which
+                              # paths reach it), falls back to env.ASSETS.fetch() otherwise
 src/
 ├── main.tsx                 # Entry point; mounts the React app
 ├── App.tsx                  # Providers + route table
@@ -77,10 +83,12 @@ src/
 ├── hooks/                   # Shared hooks
 ├── test/                    # Vitest setup and example test
 └── index.css                # Tailwind layers, design tokens, prose styles, motion utilities
-functions/
-├── writing/[slug].ts        # Edge function: injects OG/SEO meta for /writing/:slug
-├── projects/[slug].ts       # Edge function: injects OG/SEO meta for /projects/:slug
-└── cv.ts                    # Edge function: 302 from /cv to the hosted CV (URL in src/content/links.ts)
+functions/                   # Route handlers, dispatched manually by worker/index.ts (NOT
+                              # auto-compiled — that's a Pages-only convention this project no
+                              # longer uses)
+├── writing/[slug].ts        # Injects OG/SEO meta for /writing/:slug
+├── projects/[slug].ts       # Injects OG/SEO meta for /projects/:slug
+└── cv.ts                    # 302 from /cv to the hosted CV (URL in src/content/links.ts)
 scripts/
 ├── generate-rss.mjs         # Runs during npm run build; writes dist/feed.xml
 └── audit-deps.mjs           # npm run deps:audit
@@ -107,10 +115,10 @@ Routes are defined in `src/App.tsx`:
 - `/about` → `About.tsx`
 - `/experience` → `Experience.tsx`
 - `/links` → `Links.tsx` (printed QR code destination — keep this route stable)
-- `/cv` → `CvRedirect.tsx` (dev fallback; in production `functions/cv.ts` redirects first)
+- `/cv` → `CvRedirect.tsx` (dev fallback; in production `worker/index.ts` routes to `functions/cv.ts`, which redirects first)
 - `*` → `NotFound.tsx` (keep custom routes above the catch-all)
 
-SPA fallback on Cloudflare is handled by `wrangler.json` (`"not_found_handling": "single-page-application"`). There is no `_redirects` file.
+SPA fallback on Cloudflare is handled by `wrangler.json` (`"not_found_handling": "single-page-application"`). There is no `_redirects` file. Only the paths listed in `wrangler.json`'s `assets.run_worker_first` ever reach `worker/index.ts`; everything else (including `/`) is served straight from static assets/SPA fallback.
 
 ### Content Model
 
@@ -144,13 +152,13 @@ If writing or project pages break, check `src/lib/craft.ts` and Craft API availa
 
 ## Deployment Notes
 
-Deployment uses **Cloudflare Pages' native GitHub integration** — there is no GitHub Actions deploy workflow:
+Deployment uses **Cloudflare Workers Builds** (source-connected to GitHub, configured in the Cloudflare dashboard) — there is no GitHub Actions deploy workflow. This is a plain Worker deployment (`wrangler deploy` semantics), not Cloudflare Pages:
 
-1. Every push to `main` triggers a build on Cloudflare (npm install + `npm run build`)
-2. Cloudflare compiles the `/functions` directory into edge workers automatically
-3. Branch pushes and PRs get isolated preview URLs (`<branch>.aycarl.pages.dev`)
+1. Every push to `main` triggers a build on Cloudflare (npm install + `npm run build`, then a Worker deploy using `wrangler.json`)
+2. `worker/index.ts` (the `main` entry point) manually dispatches the routes listed in `wrangler.json`'s `assets.run_worker_first` to their `/functions` handlers — there is no automatic `/functions`-directory compilation; that convention is Pages-only and does not apply here
+3. The custom domain (`aycarl.com`) is bound to the Worker via a Cloudflare Custom Domain, not a Pages project — see `docs/adr/0002-actual-deployment-is-workers-with-assets.md`
 
-`wrangler.json` configures the static asset directory (`./dist`) and SPA fallback. The custom domain is managed in the Cloudflare dashboard.
+`wrangler.json` configures the static asset directory (`./dist`), the `ASSETS` binding, SPA fallback, and the `run_worker_first` route list.
 
 ## Detailed Documentation
 

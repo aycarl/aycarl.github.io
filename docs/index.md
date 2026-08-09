@@ -8,24 +8,24 @@ If you are new to the repository, read the documents in this order:
 2. [architecture.md](./architecture.md) for how the application boots, routes, and renders
 3. [content-and-maintenance.md](./content-and-maintenance.md) for where portfolio content lives and how to update it
 4. [development-workflow.md](./development-workflow.md) for linting, testing, deployment, and troubleshooting
-5. [Architectural Decision Records (ADRs)](./adr/0001-migrate-to-cloudflare-pages-for-edge-seo.md) for formal logs of design decisions
+5. [Architectural Decision Records (ADRs)](./adr/0001-migrate-to-cloudflare-pages-for-edge-seo.md) for formal logs of design decisions — see [ADR 0002](./adr/0002-actual-deployment-is-workers-with-assets.md) in particular, which corrects ADR 0001: production is a Cloudflare Worker with static assets, not Cloudflare Pages
 
 ## What this application is
 
-This repository powers a personal portfolio site built as a React single-page application and hosted on **Cloudflare Pages**.
+This repository powers a personal portfolio site built as a React single-page application, hosted on **a Cloudflare Worker with static assets** (see [ADR 0002](./adr/0002-actual-deployment-is-workers-with-assets.md) — not Cloudflare Pages, despite ADR 0001).
 
 The site has three main responsibilities:
 
 - present a strong landing page and personal brand
-- publish writing fetched from Craft through a public API (augmented by Edge Functions)
-- publish projects fetched from Craft through a public API (augmented by Edge Functions)
+- publish writing fetched from Craft through a public API (augmented by edge routing in `worker/index.ts`)
+- publish projects fetched from Craft through a public API (augmented by edge routing in `worker/index.ts`)
 - display experience, education, and skills content stored locally in the codebase
 
 ## Mental model
 
 The easiest way to understand the app is to follow the request path from top to bottom:
 
-1. A request comes in for a route (e.g. `/writing/my-post`) and is handled by **Cloudflare Pages Edge Functions** (under `/functions`). The function pre-fetches the post metadata from Craft, injects Open Graph SEO tags, and serves the `index.html` shell.
+1. A request comes in for a route (e.g. `/writing/my-post`) and, for the specific paths listed in `wrangler.json`'s `assets.run_worker_first`, is handled by `worker/index.ts`, which dispatches to the matching handler under `/functions`. The handler pre-fetches the post metadata from Craft, injects Open Graph SEO tags, and serves the `index.html` shell. Other paths are served directly from static assets/SPA fallback.
 2. `src/main.tsx` mounts the React app on the client.
 3. `src/App.tsx` wraps the app in providers, hooks up the `ErrorBoundary`, and defines the routes.
 4. each route renders a page component from `src/pages/`
