@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ErrorBoundary from "@/components/ErrorBoundary.tsx";
+import { usePageView } from "@/hooks/usePageView";
 import Index from "./pages/Index.tsx";
 import Writing from "./pages/Writing.tsx";
 import Archive from "./pages/Archive.tsx";
@@ -20,6 +21,11 @@ import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
 
+const AnalyticsListener = () => {
+  usePageView();
+  return null;
+};
+
 const App = () => (
   <ErrorBoundary>
     <QueryClientProvider client={queryClient}>
@@ -27,6 +33,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <AnalyticsListener />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/writing" element={<Writing />} />
