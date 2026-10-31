@@ -9,14 +9,14 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
-    title: "Founder & Full-Stack Developer",
-    company: "Calafold Inc. ",
+    title: "Co-Founder & Full-Stack Developer",
+    company: "Calafold Inc.",
     location: "Toronto, Ontario (Remote)",
     period: "Jul 2026 – Present",
     year: 2026,
     responsibilities: [
       "Designed and built a hazardous-waste classification and EHS compliance platform, Hazmind (hazmind.com), from product scoping through production, with domain input from a U.S. Certified Safety Professional (CSP)",
-      "Shipped a lab management system, safety review tool, inspection tool, and a free hazard categorization tool; live with a founding university client and in active evaluation with additional universities",
+      "Hazmind: shipped a lab management system, safety review tool, inspection tool, and a free hazard categorization tool; live with a founding university client and in active evaluation with additional universities",
       "Architected a serverless, cloud-native stack on Cloudflare Workers with SvelteKit, TypeScript, and Tailwind, using D1, R2, Browser Rendering, Email, and Cron bindings; Firebase Auth with JWT verification and role-based access",
       "Established CI/CD with GitHub Actions, automated releases and staged deploys, test-driven development (Vitest, Playwright), and ADR-driven design decisions",
       "Prototyping AI-assisted corrective-action suggestions and deterministic compliance guidance with Cloudflare Workers AI and CLEF"
